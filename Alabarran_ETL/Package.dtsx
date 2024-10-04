@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/4/2024 6:18:31 PM"
@@ -11,9 +11,72 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionGUID="{5BC5EC9F-9138-46E0-806B-EA0F5D41DEFE}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{5BA93A6B-0214-4BF0-9C36-5C98C70AED9E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BELIAL-PC.Albarran]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EE20FA25-F731-4BF4-9F06-55006CB7E6B1}"
+      DTS:ObjectName="BELIAL-PC.Albarran">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BELIAL-PC;Initial Catalog=Albarran;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{EE20FA25-F731-4BF4-9F06-55006CB7E6B1}BELIAL-PC.Albarran;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BELIAL-PC.Dim_Albarran]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{874FB8F9-5200-4957-B0F3-FDAFBAA22000}"
+      DTS:ObjectName="BELIAL-PC.Dim_Albarran">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BELIAL-PC;Initial Catalog=Dim_Albarran;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{874FB8F9-5200-4957-B0F3-FDAFBAA22000}BELIAL-PC.Dim_Albarran;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DIM SUCURSAL"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{CE16C085-6D42-432C-96A2-131FA3C85A8A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM SUCURSAL"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="161.142857142858,42.2857142857143"
+          Id="Package\DIM SUCURSAL"
+          TopLeft="41.1111103623739,64.9999963898552" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
