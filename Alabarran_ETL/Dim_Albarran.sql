@@ -37,7 +37,7 @@ JOIN sys.schemas AS s ON t.schema_id = s.schema_id;
 EXEC sp_executesql @dropSql;
 GO
 
--- Crear Tabla Dimensión: TIEMPO
+-- Crear Tabla Dimensión: TIEMPO (desnormalizada)
 CREATE TABLE DIMTIEMPO (
     tiempoId INT IDENTITY(1,1) PRIMARY KEY,
     fecha DATE NOT NULL,
@@ -48,24 +48,17 @@ CREATE TABLE DIMTIEMPO (
 );
 GO
 
--- Crear Tabla Dimensión: CATEGORIA
-CREATE TABLE DIMCATEGORIA (
-    categoriaId INT PRIMARY KEY,
-    categoria NVARCHAR(255) NOT NULL
-);
-GO
-
--- Crear Tabla Dimensión: PRODUCTO
+-- Crear Tabla Dimensión: PRODUCTO (sin claves foráneas)
 CREATE TABLE DIMPRODUCTO (
     productoId INT PRIMARY KEY,
     nombre NVARCHAR(255) NOT NULL,
-    categoriaId INT NOT NULL,
+    categoria NVARCHAR(255) NOT NULL, -- Categoría como parte de la dimensión
     precio DECIMAL(10, 2) NOT NULL,
     descripcion NVARCHAR(255) NULL
 );
 GO
 
--- Crear Tabla Dimensión: CLIENTE
+-- Crear Tabla Dimensión: CLIENTE (sin claves foráneas)
 CREATE TABLE DIMCLIENTE (
     clienteId INT PRIMARY KEY,
     nombre NVARCHAR(255) NOT NULL,
@@ -77,7 +70,7 @@ CREATE TABLE DIMCLIENTE (
 );
 GO
 
--- Crear Tabla Dimensión: EMPLEADO
+-- Crear Tabla Dimensión: EMPLEADO (sin claves foráneas)
 CREATE TABLE DIMEMPLEADO (
     empleadoId INT PRIMARY KEY,
     nombre NVARCHAR(255) NOT NULL,
@@ -85,22 +78,15 @@ CREATE TABLE DIMEMPLEADO (
     apMaterno NVARCHAR(255) NOT NULL,
     fechaContrato DATE NOT NULL,
     sueldoBase DECIMAL(10, 2) NOT NULL,
-    cargoId INT NOT NULL
+    cargo NVARCHAR(255) NOT NULL -- Cargo desnormalizado
 );
 GO
 
--- Crear Tabla Dimensión: SUCURSAL
+-- Crear Tabla Dimensión: SUCURSAL (sin claves foráneas)
 CREATE TABLE DIMSUCURSAL (
     sucursalId INT PRIMARY KEY,
     sucursal NVARCHAR(255) NOT NULL,
-    comunaId INT NOT NULL
-);
-GO
-
--- Crear Tabla Dimensión: COMUNA
-CREATE TABLE DIMCOMUNA (
-    comunaId INT PRIMARY KEY,
-    comuna NVARCHAR(255) NOT NULL
+    comuna NVARCHAR(255) NOT NULL -- Comuna desnormalizada
 );
 GO
 
@@ -122,7 +108,7 @@ CREATE TABLE HECHOSVENTAS (
 );
 GO
 
--- Claves Foráneas para la tabla HECHOSVENTAS
+-- Crear claves foráneas para la tabla HECHOSVENTAS
 ALTER TABLE HECHOSVENTAS
 ADD CONSTRAINT FK_HechosVentas_DimTiempo FOREIGN KEY (tiempoId)
 REFERENCES DIMTIEMPO(tiempoId);
@@ -146,16 +132,4 @@ GO
 ALTER TABLE HECHOSVENTAS
 ADD CONSTRAINT FK_HechosVentas_DimSucursal FOREIGN KEY (sucursalId)
 REFERENCES DIMSUCURSAL(sucursalId);
-GO
-
--- Clave Foránea para la tabla DIMPRODUCTO (relacionada con DIMCATEGORIA)
-ALTER TABLE DIMPRODUCTO
-ADD CONSTRAINT FK_DimProducto_DimCategoria FOREIGN KEY (categoriaId)
-REFERENCES DIMCATEGORIA(categoriaId);
-GO
-
--- Clave Foránea para la tabla DIMSUCURSAL (relacionada con DIMCOMUNA)
-ALTER TABLE DIMSUCURSAL
-ADD CONSTRAINT FK_DimSucursal_DimComuna FOREIGN KEY (comunaId)
-REFERENCES DIMCOMUNA(comunaId);
 GO
