@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Alabarran_ETL", "Alabarran_ETL\Alabarran_ETL.dtproj", "{5FA6BBDA-796F-4F71-8654-5D671613FF55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FA6BBDA-796F-4F71-8654-5D671613FF55}.Development|Default.ActiveCfg = Development
+		{5FA6BBDA-796F-4F71-8654-5D671613FF55}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34901E42-8C58-4BCB-95D5-8C4CE9AA4B65}
+	EndGlobalSection
+EndGlobal

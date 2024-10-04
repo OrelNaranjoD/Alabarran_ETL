@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2024 6:18:31 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BELIAL-PC"
+  DTS:CreatorName="BELIAL-PC\oreln"
+  DTS:DTSID="{E66C6890-AF6A-43A1-8DFD-78E9BF1A5760}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="13322"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{5BC5EC9F-9138-46E0-806B-EA0F5D41DEFE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>
