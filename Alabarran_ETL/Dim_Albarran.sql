@@ -39,8 +39,6 @@ CREATE TABLE DIMTIEMPO (
     anio INT NOT NULL,
     mes INT NOT NULL,
     dia INT NOT NULL,
-    dia_semana NVARCHAR(10) NOT NULL,
-    nombre_mes NVARCHAR(20) NOT NULL,
     trimestre INT NOT NULL
 );
 GO
