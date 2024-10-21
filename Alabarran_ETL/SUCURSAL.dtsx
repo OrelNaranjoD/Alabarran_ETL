@@ -11,36 +11,10 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="SUCURSAL"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{69639CDC-651E-419B-8BDD-9FE73A356DC4}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{2771B20C-C150-4877-B870-CEBB2C0BC1E9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[BELIAL-PC.Albarran]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{EE20FA25-F731-4BF4-9F06-55006CB7E6B1}"
-      DTS:ObjectName="BELIAL-PC.Albarran">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=BELIAL-PC;Initial Catalog=Albarran;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{EE20FA25-F731-4BF4-9F06-55006CB7E6B1}BELIAL-PC.Albarran;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[BELIAL-PC.Dim_Albarran]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{874FB8F9-5200-4957-B0F3-FDAFBAA22000}"
-      DTS:ObjectName="BELIAL-PC.Dim_Albarran">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=BELIAL-PC;Initial Catalog=Dim_Albarran;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package-{874FB8F9-5200-4957-B0F3-FDAFBAA22000}BELIAL-PC.Dim_Albarran;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -58,11 +32,430 @@
           version="1">
           <components>
             <component
-              refId="Package\DIM SUCURSAL\Insertar destino"
+              refId="Package\DIM SUCURSAL\ACTUALIZAR"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="ACTUALIZAR"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DIMSUCURSAL] SET [ciudad] = ?,[comuna] = ?,[nombreSucursal] = ?,[pais] = ?,[region] = ? WHERE [sucursalId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM SUCURSAL\ACTUALIZAR.Connections[OleDbConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ciudad"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[ciudad]" />
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[comuna]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="comuna"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[comuna]" />
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[sucursal]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="sucursal"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal]" />
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[pais]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="pais"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[pais]" />
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[region]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="region"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[region]" />
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[sucursal_id]"
+                      cachedDataType="i4"
+                      cachedName="sucursal_id"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="i4"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM SUCURSAL\ACTUALIZAR.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM SUCURSAL\ACTUALIZAR.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM SUCURSAL\ACTUALIZAR.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ACTUALIZAR.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM SUCURSAL\ACTUALIZAR.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="DIMENSION LENTAMENTE CAMBIANTE"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [ciudad], [comuna], [nombreSucursal], [pais], [region], [sucursalId] FROM [dbo].[DIMSUCURSAL]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Connections[LookupConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].Columns[ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ciudad"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[ciudad]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[ciudad]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].Columns[comuna]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="comuna"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[comuna]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[comuna]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].Columns[sucursal]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="sucursal"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[nombreSucursal]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].Columns[pais]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="pais"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[pais]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[pais]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].Columns[region]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="region"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[region]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[region]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].Columns[sucursal_id]"
+                      cachedDataType="i4"
+                      cachedName="sucursal_id"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[sucursalId]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[comuna]"
+                      dataType="wstr"
+                      length="255"
+                      name="comuna" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[nombreSucursal]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombreSucursal" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[pais]"
+                      dataType="wstr"
+                      length="255"
+                      name="pais" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[region]"
+                      dataType="wstr"
+                      length="255"
+                      name="region" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input].ExternalColumns[sucursalId]"
+                      dataType="i4"
+                      name="sucursalId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM SUCURSAL\INSERTAR"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="Insertar destino"
+              name="INSERTAR"
               usesDispositions="true"
               version="4">
               <properties>
@@ -115,78 +508,114 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DIM SUCURSAL\Insertar destino.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[BELIAL-PC.Dim_Albarran]"
-                  connectionManagerRefId="Package.ConnectionManagers[BELIAL-PC.Dim_Albarran]"
+                  refId="Package\DIM SUCURSAL\INSERTAR.Connections[OleDbConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input]"
+                  refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].Columns[sucursal_id]"
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].Columns[sucursal_id]"
                       cachedDataType="i4"
                       cachedName="sucursal_id"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[sucursalId]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal_id]" />
+                      externalMetadataColumnId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[sucursalId]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal_id]" />
                     <inputColumn
-                      refId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].Columns[sucursal]"
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].Columns[sucursal]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="sucursal"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[sucursal]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal]" />
+                      externalMetadataColumnId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[nombreSucursal]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal]" />
                     <inputColumn
-                      refId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].Columns[comuna]"
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].Columns[comuna]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="comuna"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[comuna]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[comuna]" />
+                      externalMetadataColumnId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[comuna]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[comuna]" />
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].Columns[ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ciudad"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[ciudad]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[ciudad]" />
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].Columns[region]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="region"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[region]" />
+                    <inputColumn
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].Columns[pais]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="pais"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[pais]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[pais]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[sucursalId]"
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[sucursalId]"
                       dataType="i4"
                       name="sucursalId" />
                     <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[sucursal]"
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[nombreSucursal]"
                       dataType="wstr"
                       length="255"
-                      name="sucursal" />
+                      name="nombreSucursal" />
                     <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input].ExternalColumns[comuna]"
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[comuna]"
                       dataType="wstr"
                       length="255"
                       name="comuna" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                      dataType="wstr"
+                      length="255"
+                      name="region" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[pais]"
+                      dataType="wstr"
+                      length="255"
+                      name="pais" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DIM SUCURSAL\Insertar destino.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DIM SUCURSAL\INSERTAR.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Insertar destino.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DIM SUCURSAL\INSERTAR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DIM SUCURSAL\Insertar destino.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DIM SUCURSAL\INSERTAR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Insertar destino.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DIM SUCURSAL\INSERTAR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DIM SUCURSAL\Insertar destino.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DIM SUCURSAL\INSERTAR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -195,144 +624,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DIM SUCURSAL\OLE DB Command"
-              componentClassID="Microsoft.OLEDBCommand"
-              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="OLE DB Command"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DIMSUCURSAL] SET [comuna] = ?,[sucursal] = ? WHERE [sucursalId] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DIM SUCURSAL\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[BELIAL-PC.Dim_Albarran]"
-                  connectionManagerRefId="Package.ConnectionManagers[BELIAL-PC.Dim_Albarran]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input]"
-                  errorOrTruncationOperation="Command Execution"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Command Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].Columns[comuna]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="comuna"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[comuna]" />
-                    <inputColumn
-                      refId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].Columns[sucursal]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="sucursal"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal]" />
-                    <inputColumn
-                      refId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].Columns[sucursal_id]"
-                      cachedDataType="i4"
-                      cachedName="sucursal_id"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal_id]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="wstr"
-                      length="255"
-                      name="Param_0">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">1</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="wstr"
-                      length="255"
-                      name="Param_1">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">1</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="i4"
-                      name="Param_2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">17</property>
-                      </properties>
-                    </externalMetadataColumn>
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DIM SUCURSAL\OLE DB Command.Outputs[OLE DB Command Output]"
-                  exclusionGroup="1"
-                  name="OLE DB Command Output"
-                  synchronousInputId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM SUCURSAL\OLE DB Command.Outputs[OLE DB Command Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Command Error Output"
-                  synchronousInputId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DIM SUCURSAL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DIM SUCURSAL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DIM SUCURSAL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DIM SUCURSAL\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DIM SUCURSAL\Origen Sucursal"
+              refId="Package\DIM SUCURSAL\ORIGEN"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="Origen Sucursal"
+              name="ORIGEN"
               usesDispositions="true"
               version="7">
               <properties>
@@ -352,9 +648,9 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT comunas.comuna, sucursales.sucursal, sucursales.sucursal_id
-FROM   comunas INNER JOIN
-           sucursales ON comunas.comuna_id = sucursales.comuna_id</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT dbo.ciudad.nombre AS ciudad, dbo.comunas.nombre AS comuna, dbo.pais.nombre AS pais, dbo.region.nombre AS region, dbo.sucursales.sucursal, dbo.sucursales.sucursal_id
+FROM   dbo.ciudad, dbo.comunas, dbo.region, dbo.pais, dbo.sucursales
+WHERE dbo.ciudad.ciudad_id = dbo.comunas.ciudad_id AND dbo.ciudad.region_id = dbo.region.region_id AND dbo.region.pais_id = dbo.pais.pais_id AND dbo.comunas.comuna_id = dbo.sucursales.comuna_id</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -379,272 +675,163 @@ FROM   comunas INNER JOIN
               </properties>
               <connections>
                 <connection
-                  refId="Package\DIM SUCURSAL\Origen Sucursal.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[BELIAL-PC.Albarran]"
-                  connectionManagerRefId="Package.ConnectionManagers[BELIAL-PC.Albarran]"
+                  refId="Package\DIM SUCURSAL\ORIGEN.Connections[OleDbConnection]"
+                  connectionManagerID="{F76B0CC1-2A8C-4AB5-B7B0-9F22CD63A907}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Albarran]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output]"
+                  refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[comuna]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].ExternalColumns[comuna]"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[sucursal]"
                       length="255"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[comuna]"
-                      name="comuna"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].ExternalColumns[sucursal]"
-                      length="255"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal]"
                       name="sucursal"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal_id]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal_id]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].ExternalColumns[sucursal_id]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal_id]"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[sucursal_id]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal_id]"
                       name="sucursal_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[ciudad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                      length="255"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[ciudad]"
+                      name="ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[comuna]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[comuna]"
+                      length="255"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[comuna]"
+                      name="comuna"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[pais]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      length="100"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[pais]"
+                      name="pais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                      length="255"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].Columns[region]"
+                      name="region"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].ExternalColumns[comuna]"
-                      dataType="wstr"
-                      length="255"
-                      name="comuna" />
-                    <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].ExternalColumns[sucursal]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[sucursal]"
                       dataType="wstr"
                       length="255"
                       name="sucursal" />
                     <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].ExternalColumns[sucursal_id]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[sucursal_id]"
                       dataType="i4"
                       name="sucursal_id" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[comuna]"
+                      dataType="wstr"
+                      length="255"
+                      name="comuna" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[pais]"
+                      dataType="wstr"
+                      length="100"
+                      name="pais" />
+                    <externalMetadataColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                      dataType="wstr"
+                      length="255"
+                      name="region" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[comuna]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ciudad]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[comuna]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ciudad]"
+                      name="ciudad" />
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[comuna]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[comuna]"
                       name="comuna" />
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[sucursal]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[pais]"
+                      name="pais" />
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[region]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[sucursal]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[region]"
+                      name="region" />
+                    <outputColumn
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[sucursal]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[sucursal]"
                       name="sucursal" />
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[sucursal_id]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[sucursal_id]"
                       dataType="i4"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[sucursal_id]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[sucursal_id]"
                       name="sucursal_id" />
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DIM SUCURSAL\Slowly Changing Dimension"
-              componentClassID="Microsoft.SCD"
-              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
-              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
-              name="Slowly Changing Dimension"
-              version="3">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SELECT statement used to create a schema rowset."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [comuna], [sucursal], [sucursalId] FROM [dbo].[DIMSUCURSAL]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
-                  name="CurrentRowWhere"></property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
-                  name="UpdateChangingAttributeHistory">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
-                  name="FailOnFixedAttributeChange">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the column name for the inferred member."
-                  name="InferredMemberIndicator"></property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether inferred member updates are detected."
-                  name="EnableInferredMember">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
-                  name="FailOnLookupFailure">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies that all rows in the input are new or the transformation detects the change type."
-                  name="IncomingRowChangeType"
-                  typeConverter="IncomingRowChangeType">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Connections[LookupConnection]"
-                  connectionManagerID="Package.ConnectionManagers[BELIAL-PC.Dim_Albarran]"
-                  connectionManagerRefId="Package.ConnectionManagers[BELIAL-PC.Dim_Albarran]"
-                  description="Defines the connection to use for lookups in the dimension table"
-                  name="LookupConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
-                  name="Slowly Changing Dimension Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[comuna]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="comuna"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[comuna]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[comuna]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          name="ColumnType"
-                          typeConverter="ColumnType">2</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[sucursal]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="sucursal"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[sucursal]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          name="ColumnType"
-                          typeConverter="ColumnType">2</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[sucursal_id]"
-                      cachedDataType="i4"
-                      cachedName="sucursal_id"
-                      externalMetadataColumnId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[sucursalId]"
-                      lineageId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal_id]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          name="ColumnType"
-                          typeConverter="ColumnType">1</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[comuna]"
-                      dataType="wstr"
-                      length="255"
-                      name="comuna" />
-                    <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[sucursal]"
-                      dataType="wstr"
-                      length="255"
-                      name="sucursal" />
-                    <externalMetadataColumn
-                      refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[sucursalId]"
-                      dataType="i4"
-                      name="sucursalId" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Outputs[Unchanged Output]"
-                  description="Unchanged rows"
-                  exclusionGroup="1"
-                  name="Unchanged Output"
-                  synchronousInputId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Outputs[New Output]"
-                  description="New rows"
-                  exclusionGroup="1"
-                  name="New Output"
-                  synchronousInputId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
-                  description="Rows with changes in columns tagged FixedAttribute"
-                  exclusionGroup="1"
-                  name="Fixed Attribute Output"
-                  synchronousInputId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
-                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
-                  exclusionGroup="1"
-                  name="Changing Attribute Updates Output"
-                  synchronousInputId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
-                  description="HistoricalAttribute (Type 2) changes result in these new rows"
-                  exclusionGroup="2"
-                  name="Historical Attribute Inserts Output"
-                  synchronousInputId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM SUCURSAL\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
-                  description="Information to update unpopulated initial dimension row"
-                  exclusionGroup="1"
-                  name="Inferred Member Updates Output"
-                  synchronousInputId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -653,19 +840,19 @@ FROM   comunas INNER JOIN
           <paths>
             <path
               refId="Package\DIM SUCURSAL.Paths[Changing Attribute Updates Output]"
-              endId="Package\DIM SUCURSAL\OLE DB Command.Inputs[OLE DB Command Input]"
+              endId="Package\DIM SUCURSAL\ACTUALIZAR.Inputs[OLE DB Command Input]"
               name="Changing Attribute Updates Output"
-              startId="Package\DIM SUCURSAL\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
+              startId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Outputs[Changing Attribute Updates Output]" />
             <path
               refId="Package\DIM SUCURSAL.Paths[New Output]"
-              endId="Package\DIM SUCURSAL\Insertar destino.Inputs[OLE DB Destination Input]"
+              endId="Package\DIM SUCURSAL\INSERTAR.Inputs[OLE DB Destination Input]"
               name="New Output"
-              startId="Package\DIM SUCURSAL\Slowly Changing Dimension.Outputs[New Output]" />
+              startId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Outputs[New Output]" />
             <path
               refId="Package\DIM SUCURSAL.Paths[OLE DB Source Output]"
-              endId="Package\DIM SUCURSAL\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              endId="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE.Inputs[Slowly Changing Dimension Input]"
               name="OLE DB Source Output"
-              startId="Package\DIM SUCURSAL\Origen Sucursal.Outputs[OLE DB Source Output]" />
+              startId="Package\DIM SUCURSAL\ORIGEN.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -694,26 +881,18 @@ FROM   comunas INNER JOIN
     design-time-name="Package\DIM SUCURSAL">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="214.857142857143,42.2857142857143"
-          Id="Package\DIM SUCURSAL\Slowly Changing Dimension"
-          TopLeft="199.214285714286,107.785714285714" />
+          Size="282.857142857143,42.2857142857143"
+          Id="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE"
+          TopLeft="132.214285714286,107.785714285714" />
         <NodeLayout
-          Size="172,42.2857142857143"
-          Id="Package\DIM SUCURSAL\OLE DB Command"
-          TopLeft="220.642857142857,210.071428571428" />
-        <NodeLayout
-          Size="154.285714285715,42.2857142857143"
-          Id="Package\DIM SUCURSAL\Insertar destino"
-          TopLeft="5.50000000000003,210.071428571428" />
-        <NodeLayout
-          Size="157.142857142858,42.2857142857143"
-          Id="Package\DIM SUCURSAL\Origen Sucursal"
-          TopLeft="228.071428571429,5.49999999999997" />
+          Size="122.285714285715,42.2857142857143"
+          Id="Package\DIM SUCURSAL\ORIGEN"
+          TopLeft="212.5,5.49999999999997" />
         <EdgeLayout
           Id="Package\DIM SUCURSAL.Paths[OLE DB Source Output]"
-          TopLeft="306.642857142857,47.7857142857142">
+          TopLeft="273.642857142857,47.7857142857142">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -733,106 +912,128 @@ FROM   comunas INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="134.285714285715,42.2857142857143"
+          Id="Package\DIM SUCURSAL\INSERTAR"
+          TopLeft="5.50000000000003,210.071428571428" />
         <EdgeLayout
           Id="Package\DIM SUCURSAL.Paths[New Output]"
-          TopLeft="272.166666666667,150.071428571428">
+          TopLeft="227.833333333333,150.071428571428">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-189.52380952381,59.9999999999999"
+              EndConnector="-155.190476190476,59.9999999999999"
               Start="0,0"
-              End="-189.52380952381,52.4999999999999">
+              End="-155.190476190476,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.2661034846885" />
+                    End="0,20.202490960225" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.2661034846885"
-                    Point2="0,24.2661034846885"
-                    Point3="-4,24.2661034846885" />
+                    Point1="0,20.202490960225"
+                    Point2="0,24.202490960225"
+                    Point3="-4,24.202490960225" />
                   <mssgle:LineSegment
-                    End="-185.52380952381,24.2661034846885" />
+                    End="-151.190476190476,24.202490960225" />
                   <mssgle:CubicBezierSegment
-                    Point1="-185.52380952381,24.2661034846885"
-                    Point2="-189.52380952381,24.2661034846885"
-                    Point3="-189.52380952381,28.2661034846885" />
+                    Point1="-151.190476190476,24.202490960225"
+                    Point2="-155.190476190476,24.202490960225"
+                    Point3="-155.190476190476,28.202490960225" />
                   <mssgle:LineSegment
-                    End="-189.52380952381,52.4999999999999" />
+                    End="-155.190476190476,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-121.853291480655,29.2661034846885,54.1827734375,11.43359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="146.857142857143,42.2857142857143"
+          Id="Package\DIM SUCURSAL\ACTUALIZAR"
+          TopLeft="200.214285714286,210.071428571428" />
         <EdgeLayout
           Id="Package\DIM SUCURSAL.Paths[Changing Attribute Updates Output]"
-          TopLeft="341.119047619048,150.071428571428">
+          TopLeft="319.452380952381,150.071428571428">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-34.4761904761904,59.9999999999999"
+              EndConnector="-45.8095238095238,59.9999999999999"
               Start="0,0"
-              End="-34.4761904761904,52.4999999999999">
+              End="-45.8095238095238,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.2661034846885" />
+                    End="0,20.202490960225" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.2661034846885"
-                    Point2="0,24.2661034846885"
-                    Point3="-4,24.2661034846885" />
+                    Point1="0,20.202490960225"
+                    Point2="0,24.202490960225"
+                    Point3="-4,24.202490960225" />
                   <mssgle:LineSegment
-                    End="-30.4761904761904,24.2661034846885" />
+                    End="-41.8095238095238,24.202490960225" />
                   <mssgle:CubicBezierSegment
-                    Point1="-30.4761904761904,24.2661034846885"
-                    Point2="-34.4761904761904,24.2661034846885"
-                    Point3="-34.4761904761904,28.2661034846885" />
+                    Point1="-41.8095238095238,24.202490960225"
+                    Point2="-45.8095238095238,24.202490960225"
+                    Point3="-45.8095238095238,28.202490960225" />
                   <mssgle:LineSegment
-                    End="-34.4761904761904,52.4999999999999" />
+                    End="-45.8095238095238,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-95.7720014880952,29.2661034846885,157.0678125,11.6630859375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DIM SUCURSAL\Slowly Changing Dimension">
+    design-time-name="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE">
     <Properties>
       <Property>
         <Name>SCDMetadata</Name>
         <Value
           type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionID&gt;{874FB8F9-5200-4957-B0F3-FDAFBAA22000}&lt;/ConnectionID&gt;
+  &lt;ConnectionID&gt;{6E4A56A0-063F-4037-84D6-83050D188F1C}&lt;/ConnectionID&gt;
   &lt;TableName&gt;[dbo].[DIMSUCURSAL]&lt;/TableName&gt;
   &lt;InputToColumnsCollection&gt;
     &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Origen Sucursal.Outputs[OLE DB Source Output].Columns[comuna]&lt;/IdentificationString&gt;
+      &lt;IdentificationString&gt;ORIGEN.Outputs[OLE DB Source Output].Columns[ciudad]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ciudad&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;ORIGEN.Outputs[OLE DB Source Output].Columns[comuna]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;comuna&lt;/ColumnName&gt;
       &lt;KeyType&gt;None&lt;/KeyType&gt;
       &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
     &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;sucursal&lt;/ColumnName&gt;
+      &lt;IdentificationString&gt;ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;nombreSucursal&lt;/ColumnName&gt;
       &lt;KeyType&gt;None&lt;/KeyType&gt;
       &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
     &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Origen Sucursal.Outputs[OLE DB Source Output].Columns[sucursal_id]&lt;/IdentificationString&gt;
+      &lt;IdentificationString&gt;ORIGEN.Outputs[OLE DB Source Output].Columns[pais]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;pais&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;ORIGEN.Outputs[OLE DB Source Output].Columns[region]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;region&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;ORIGEN.Outputs[OLE DB Source Output].Columns[sucursal_id]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;sucursalId&lt;/ColumnName&gt;
       &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
       &lt;ChangeType&gt;None&lt;/ChangeType&gt;
@@ -858,12 +1059,20 @@ FROM   comunas INNER JOIN
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DIM SUCURSAL\Origen Sucursal">
+    design-time-name="Package\DIM SUCURSAL\ORIGEN">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <PipelinePath
+    design-time-name="Package\DIM SUCURSAL.Paths[New Output]">
+    <PathAnnotation>Never</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\DIM SUCURSAL.Paths[Changing Attribute Updates Output]">
+    <PathAnnotation>Never</PathAnnotation>
+  </PipelinePath>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

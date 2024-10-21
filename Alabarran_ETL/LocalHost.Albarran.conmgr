@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LocalHost.Albarran"
+  DTS:DTSID="{F76B0CC1-2A8C-4AB5-B7B0-9F22CD63A907}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=.;Initial Catalog=Albarran;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Alabarran_ETL-{F76B0CC1-2A8C-4AB5-B7B0-9F22CD63A907}LocalHost.Albarran;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
