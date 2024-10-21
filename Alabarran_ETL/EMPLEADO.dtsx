@@ -7,12 +7,12 @@
   DTS:CreatorName="BELIAL-PC\oreln"
   DTS:DTSID="{1F4DC2B8-FD57-4A87-A071-473DB154D387}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LastModifiedProductVersion="16.0.521.0"
   DTS:LocaleID="13322"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{07EBFB25-0E93-4A40-9F04-E0017FD8BDA2}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{096A368D-9908-47A9-80FD-C2570A8FF06D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -55,10 +55,6 @@ SET nombreCompleto = ?,
     sueldoBase = ?, 
     cargo = ?
 WHERE empleadoId = ?
-  AND (nombreCompleto != ? 
-       OR fechaContrato != ? 
-       OR sueldoBase != ? 
-       OR cargo != ?);
 </property>
                 <property
                   dataType="System.Int32"
@@ -84,7 +80,7 @@ WHERE empleadoId = ?
                     <inputColumn
                       refId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[nombre_completo]"
                       cachedDataType="wstr"
-                      cachedLength="767"
+                      cachedLength="255"
                       cachedName="nombre_completo"
                       externalMetadataColumnId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       lineageId="Package\DIM EMPLEADO\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]" />
@@ -113,13 +109,6 @@ WHERE empleadoId = ?
                       cachedName="empleado_id"
                       externalMetadataColumnId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
                       lineageId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[empleado_id]" />
-                    <inputColumn
-                      refId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[nombre]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="nombre"
-                      externalMetadataColumnId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      lineageId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -182,54 +171,6 @@ WHERE empleadoId = ?
                           name="DBParamInfoFlags">81</property>
                       </properties>
                     </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      dataType="wstr"
-                      length="255"
-                      name="Param_5">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
-                      dataType="dbDate"
-                      name="Param_6">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
-                      dataType="numeric"
-                      name="Param_7"
-                      precision="10"
-                      scale="2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
-                      dataType="wstr"
-                      length="255"
-                      name="Param_8">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -266,6 +207,169 @@ WHERE empleadoId = ?
               </outputs>
             </component>
             <component
+              refId="Package\DIM EMPLEADO\DIVIDIR"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="DIVIDIR"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[sueldo_base]"
+                      cachedDataType="i4"
+                      cachedName="sueldo_base"
+                      lineageId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[sueldo_base]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[fecha_contrato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha_contrato"
+                      lineageId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[fecha_contrato]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="cargo"
+                      lineageId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[cargo]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[nombre_completo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_completo"
+                      lineageId="Package\DIM EMPLEADO\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[fechaContratoLookup]"
+                      cachedDataType="dbDate"
+                      cachedName="fechaContratoLookup"
+                      lineageId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaContratoLookup]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[sueldoBaseLookup]"
+                      cachedDataType="numeric"
+                      cachedName="sueldoBaseLookup"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sueldoBaseLookup]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[cargoLookup]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="cargoLookup"
+                      lineageId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[cargoLookup]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[nombreCompletoLookup]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombreCompletoLookup"
+                      lineageId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombreCompletoLookup]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional].Columns[empleadoIdLookup]"
+                      cachedDataType="i4"
+                      cachedName="empleadoIdLookup"
+                      lineageId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[empleadoIdLookup]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM EMPLEADO\DIVIDIR.Outputs[INPUT]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="INPUT"
+                  synchronousInputId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">[ISNULL](#{Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[empleadoIdLookup]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(empleadoIdLookup)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM EMPLEADO\DIVIDIR.Outputs[UPDATE]"
+                  description="Salida 2 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="UPDATE"
+                  synchronousInputId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">#{Package\DIM EMPLEADO\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]} != #{Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombreCompletoLookup]} || #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[fecha_contrato]} != #{Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaContratoLookup]} || #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[sueldo_base]} != #{Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sueldoBaseLookup]} || #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[cargo]} != #{Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[cargoLookup]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">nombre_completo != nombreCompletoLookup || fecha_contrato != fechaContratoLookup || sueldo_base != sueldoBaseLookup || cargo != cargoLookup</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM EMPLEADO\DIVIDIR.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM EMPLEADO\DIVIDIR.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM EMPLEADO\DIVIDIR.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM EMPLEADO\DIVIDIR.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM EMPLEADO\DIVIDIR.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\DIM EMPLEADO\INSERTAR DESTINO"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -290,8 +394,8 @@ WHERE empleadoId = ?
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT empleadoId, nombreCompleto, fechaContrato, sueldoBase, cargo
-FROM   dbo.DIMEMPLEADO</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        empleadoId, nombreCompleto, fechaContrato, sueldoBase, cargo
+FROM            dbo.DIMEMPLEADO</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -339,12 +443,6 @@ FROM   dbo.DIMEMPLEADO</property>
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[empleado_id]"
-                      cachedDataType="i4"
-                      cachedName="empleado_id"
-                      externalMetadataColumnId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[empleadoId]"
-                      lineageId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[empleado_id]" />
-                    <inputColumn
                       refId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[fecha_contrato]"
                       cachedDataType="dbTimeStamp"
                       cachedName="fecha_contrato"
@@ -364,12 +462,18 @@ FROM   dbo.DIMEMPLEADO</property>
                       externalMetadataColumnId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[cargo]"
                       lineageId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[cargo]" />
                     <inputColumn
-                      refId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[nombreCompletoLookup]"
+                      refId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      externalMetadataColumnId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[empleadoId]"
+                      lineageId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[empleado_id]" />
+                    <inputColumn
+                      refId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[nombre_completo]"
                       cachedDataType="wstr"
                       cachedLength="255"
-                      cachedName="nombreCompletoLookup"
+                      cachedName="nombre_completo"
                       externalMetadataColumnId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[nombreCompleto]"
-                      lineageId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombreCompletoLookup]" />
+                      lineageId="Package\DIM EMPLEADO\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -701,7 +805,7 @@ WHERE dbo.empleados.cargo_id = dbo.cargos.cargo_id</property>
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      length="767"
+                      length="255"
                       lineageId="Package\DIM EMPLEADO\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]"
                       name="nombre_completo"
                       truncationRowDisposition="FailComponent">
@@ -710,13 +814,13 @@ WHERE dbo.empleados.cargo_id = dbo.cargos.cargo_id</property>
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">([ISNULL](#{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]}) ? "" : #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]}) + " " + ([ISNULL](#{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]}) ? "" : #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]}) + " " + ([ISNULL](#{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]}) ? "" : #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]})</property>
+                          name="Expression">[SUBSTRING](([ISNULL](#{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]}) ? "" : #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]}) + " " + ([ISNULL](#{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]}) ? "" : #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]}) + " " + ([ISNULL](#{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]}) ? "" : #{Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]}),1,255)</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(ISNULL(nombre) ? "" : nombre) + " " + (ISNULL(appaterno) ? "" : appaterno) + " " + (ISNULL(apmaterno) ? "" : apmaterno)</property>
+                          name="FriendlyExpression">SUBSTRING((ISNULL(nombre) ? "" : nombre) + " " + (ISNULL(appaterno) ? "" : appaterno) + " " + (ISNULL(apmaterno) ? "" : apmaterno),1,255)</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -785,7 +889,7 @@ where [refTable].[empleadoId] = ?</property>
                   dataType="System.Int32"
                   description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
                   name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">1</property>
+                  typeConverter="LookupNoMatchBehavior">0</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
@@ -853,6 +957,7 @@ where [refTable].[empleadoId] = ?</property>
                 <output
                   refId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
                   exclusionGroup="1"
                   name="Lookup Match Output"
                   synchronousInputId="Package\DIM EMPLEADO\VERIFICAR DATOS.Inputs[Lookup Input]">
@@ -974,39 +1079,44 @@ where [refTable].[empleadoId] = ?</property>
               name="Derived Column Output"
               startId="Package\DIM EMPLEADO\UNION DE NOMBRES.Outputs[Derived Column Output]" />
             <path
-              refId="Package\DIM EMPLEADO.Paths[Lookup Match Output]"
+              refId="Package\DIM EMPLEADO.Paths[INPUT]"
               endId="Package\DIM EMPLEADO\INSERTAR DESTINO.Inputs[OLE DB Destination Input]"
+              name="INPUT"
+              startId="Package\DIM EMPLEADO\DIVIDIR.Outputs[INPUT]" />
+            <path
+              refId="Package\DIM EMPLEADO.Paths[Lookup Match Output]"
+              endId="Package\DIM EMPLEADO\DIVIDIR.Inputs[Entrada de división condicional]"
               name="Lookup Match Output"
               startId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\DIM EMPLEADO.Paths[Lookup No Match Output]"
-              endId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]"
-              name="Lookup No Match Output"
-              startId="Package\DIM EMPLEADO\VERIFICAR DATOS.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\DIM EMPLEADO.Paths[OLE DB Source Output]"
               endId="Package\DIM EMPLEADO\UNION DE NOMBRES.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
               startId="Package\DIM EMPLEADO\ORIGEN.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DIM EMPLEADO.Paths[UPDATE]"
+              endId="Package\DIM EMPLEADO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]"
+              name="UPDATE"
+              startId="Package\DIM EMPLEADO\DIVIDIR.Outputs[UPDATE]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
-<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
-<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
   Version="8">
-  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="162.285714285715,42.2857142857143"
+          Size="162,42"
           Id="Package\DIM EMPLEADO"
           TopLeft="5.5,5.49999999999997" />
       </GraphLayout>
@@ -1018,39 +1128,39 @@ where [refTable].[empleadoId] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="185.714285714286,42.2857142857143"
-          Id="Package\DIM EMPLEADO\INSERTAR DESTINO"
-          TopLeft="113.674605926719,300.538961695351" />
-        <NodeLayout
-          Size="177.714285714286,42.2857142857143"
-          Id="Package\DIM EMPLEADO\VERIFICAR DATOS"
-          TopLeft="265.230154187145,179.935066608859" />
-        <NodeLayout
-          Size="122.285714285715,42.2857142857143"
-          Id="Package\DIM EMPLEADO\ORIGEN"
-          TopLeft="292.388888727,5.49999999999997" />
-        <NodeLayout
-          Size="198.285714285715,42.2857142857143"
-          Id="Package\DIM EMPLEADO\ACTUALIZAR DESTINO"
-          TopLeft="368.277771170677,304.084416043889" />
-        <NodeLayout
-          Size="190.285714285715,42.2857142857143"
+          Size="190,42"
           Id="Package\DIM EMPLEADO\UNION DE NOMBRES"
-          TopLeft="256.666661992118,88.6363587134389" />
+          TopLeft="256.5,107.5" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\DIM EMPLEADO\ACTUALIZAR DESTINO"
+          TopLeft="5.50000000000006,413.5" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\DIM EMPLEADO\ORIGEN"
+          TopLeft="290.5,5.5" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\DIM EMPLEADO\VERIFICAR DATOS"
+          TopLeft="262.5,209.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\DIM EMPLEADO\INSERTAR DESTINO"
+          TopLeft="264,413.5" />
         <EdgeLayout
           Id="Package\DIM EMPLEADO.Paths[OLE DB Source Output]"
-          TopLeft="352.670632502416,47.7857142857142">
+          TopLeft="351.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,40.8506444277246"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,33.3506444277246">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.3506444277246" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1061,18 +1171,18 @@ where [refTable].[empleadoId] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DIM EMPLEADO.Paths[Derived Column Output]"
-          TopLeft="352.948408089631,130.922072999153">
+          TopLeft="351.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,49.012993609706"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,41.512993609706">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.512993609706" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1081,75 +1191,103 @@ where [refTable].[empleadoId] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="118,42"
+          Id="Package\DIM EMPLEADO\DIVIDIR"
+          TopLeft="292.5,311.5" />
         <EdgeLayout
           Id="Package\DIM EMPLEADO.Paths[Lookup Match Output]"
-          TopLeft="354.087297044287,222.220780894573">
+          TopLeft="351.5,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-147.555548260426,78.3181808007778"
+              EndConnector="0,60"
               Start="0,0"
-              End="-147.555548260426,70.8181808007778">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.1590904003889" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35.1590904003889"
-                    Point2="0,39.1590904003889"
-                    Point3="-4,39.1590904003889" />
-                  <mssgle:LineSegment
-                    End="-143.555548260426,39.1590904003889" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-143.555548260426,39.1590904003889"
-                    Point2="-147.555548260426,39.1590904003889"
-                    Point3="-147.555548260426,43.1590904003889" />
-                  <mssgle:LineSegment
-                    End="-147.555548260426,70.8181808007778" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-121.969160848963,44.1590904003889,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DIM EMPLEADO.Paths[Lookup No Match Output]"
-          TopLeft="382.373011330002,222.220780894573">
+          Id="Package\DIM EMPLEADO.Paths[UPDATE]"
+          TopLeft="333.166666666667,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="85.0476169835324,81.8636351493153"
+              EndConnector="-228.666666666667,60"
               Start="0,0"
-              End="85.0476169835324,74.3636351493153">
+              End="-228.666666666667,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.1837297354777" />
+                    End="0,20.4816053511706" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,29.1837297354777"
-                    Point2="0,33.1837297354777"
-                    Point3="4,33.1837297354777" />
+                    Point1="0,20.4816053511706"
+                    Point2="0,24.4816053511706"
+                    Point3="-4,24.4816053511706" />
                   <mssgle:LineSegment
-                    End="81.0476169835324,33.1837297354777" />
+                    End="-224.666666666667,24.4816053511706" />
                   <mssgle:CubicBezierSegment
-                    Point1="81.0476169835324,33.1837297354777"
-                    Point2="85.0476169835324,33.1837297354777"
-                    Point3="85.0476169835324,37.1837297354777" />
+                    Point1="-224.666666666667,24.4816053511706"
+                    Point2="-228.666666666667,24.4816053511706"
+                    Point3="-228.666666666667,28.4816053511706" />
                   <mssgle:LineSegment
-                    End="85.0476169835324,74.3636351493153" />
+                    End="-228.666666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-13.2825782269838,38.1837297354777,111.6127734375,11.609375"
+              BoundingBox="-132.995227864583,29.4816053511706,37.3237890625,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM EMPLEADO.Paths[INPUT]"
+          TopLeft="369.833333333333,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.3333333333333,60"
+              Start="0,0"
+              End="-18.3333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4816053511706" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4816053511706"
+                    Point2="0,24.4816053511706"
+                    Point3="-4,24.4816053511706" />
+                  <mssgle:LineSegment
+                    End="-14.3333333333333,24.4816053511706" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.3333333333333,24.4816053511706"
+                    Point2="-18.3333333333333,24.4816053511706"
+                    Point3="-18.3333333333333,28.4816053511706" />
+                  <mssgle:LineSegment
+                    End="-18.3333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.0969791666667,29.4816053511706,29.860625,9.421875"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1157,20 +1295,12 @@ where [refTable].[empleadoId] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DIM EMPLEADO\INSERTAR DESTINO">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\DIM EMPLEADO\VERIFICAR DATOS">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -1180,8 +1310,16 @@ where [refTable].[empleadoId] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM EMPLEADO\INSERTAR DESTINO">
+    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
