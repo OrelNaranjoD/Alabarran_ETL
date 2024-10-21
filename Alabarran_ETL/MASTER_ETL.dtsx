@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{76EEA11A-5A48-46F5-A5F7-BBBD44D89E4A}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{7371632D-11A6-4C8C-9484-5973A96A71C6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -68,23 +68,6 @@
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\EJECUTAR TIEMPO"
-      DTS:CreationName="Microsoft.ExecutePackageTask"
-      DTS:Description="Execute Package Task"
-      DTS:DTSID="{911B4C62-C22C-4345-9EAE-70C91FC7EF18}"
-      DTS:ExecutableType="Microsoft.ExecutePackageTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="EJECUTAR TIEMPO"
-      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <ExecutePackageTask>
-          <UseProjectReference>True</UseProjectReference>
-          <PackageName>TIEMPO.dtsx</PackageName>
-        </ExecutePackageTask>
-      </DTS:ObjectData>
-    </DTS:Executable>
   </DTS:Executables>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
@@ -110,10 +93,6 @@
           Size="213.142857142858,42.2857142857143"
           Id="Package\EJECUTAR SUCURSALES"
           TopLeft="49.4444435439362,149.499991696667" />
-        <NodeLayout
-          Size="181.142857142858,42.2857142857143"
-          Id="Package\EJECUTAR TIEMPO"
-          TopLeft="320.555549717428,147.727264522398" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

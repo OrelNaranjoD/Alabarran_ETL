@@ -65,9 +65,7 @@ GO
 
 CREATE TABLE DIMEMPLEADO (
     empleadoId INT PRIMARY KEY,
-    nombre NVARCHAR(255) NOT NULL,
-    apPaterno NVARCHAR(255) NOT NULL,
-    apMaterno NVARCHAR(255) NOT NULL,
+    nombreCompleto NVARCHAR(255) NOT NULL,
     fechaContrato DATE NOT NULL,
     sueldoBase DECIMAL(10, 2) NOT NULL,
     cargo NVARCHAR(255) NOT NULL
