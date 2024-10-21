@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="SUCURSAL"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{2771B20C-C150-4877-B870-CEBB2C0BC1E9}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{B3E23426-20C1-4359-AB7C-90AE34B7E783}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -873,7 +873,7 @@ WHERE dbo.ciudad.ciudad_id = dbo.comunas.ciudad_id AND dbo.ciudad.region_id = db
         <NodeLayout
           Size="161.142857142858,42.2857142857143"
           Id="Package\DIM SUCURSAL"
-          TopLeft="41.1111103623739,66.1818145060344" />
+          TopLeft="5.5,5.49999999999997" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -991,6 +991,22 @@ WHERE dbo.ciudad.ciudad_id = dbo.comunas.ciudad_id AND dbo.ciudad.region_id = db
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelinePath
+    design-time-name="Package\DIM SUCURSAL.Paths[New Output]">
+    <PathAnnotation>Never</PathAnnotation>
+  </PipelinePath>
+  <PipelinePath
+    design-time-name="Package\DIM SUCURSAL.Paths[Changing Attribute Updates Output]">
+    <PathAnnotation>Never</PathAnnotation>
+  </PipelinePath>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM SUCURSAL\ORIGEN">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DIM SUCURSAL\DIMENSION LENTAMENTE CAMBIANTE">
     <Properties>
@@ -1058,21 +1074,5 @@ WHERE dbo.ciudad.ciudad_id = dbo.comunas.ciudad_id AND dbo.ciudad.region_id = db
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DIM SUCURSAL\ORIGEN">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelinePath
-    design-time-name="Package\DIM SUCURSAL.Paths[New Output]">
-    <PathAnnotation>Never</PathAnnotation>
-  </PipelinePath>
-  <PipelinePath
-    design-time-name="Package\DIM SUCURSAL.Paths[Changing Attribute Updates Output]">
-    <PathAnnotation>Never</PathAnnotation>
-  </PipelinePath>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="PRODUCTO"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{B27DC99A-4D7B-4525-A85C-FD1E366C65B6}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{01D436A3-5A23-4084-AE2B-809E81AF2125}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,11 +32,11 @@
           version="1">
           <components>
             <component
-              refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO"
+              refId="Package\DIM PRODUCTO\ACTUALIZAR"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
               description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="ACTUALIZAR DESTINO"
+              name="ACTUALIZAR"
               usesDispositions="true"
               version="2">
               <properties>
@@ -49,12 +49,13 @@
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DIMPRODUCTO]
-   SET [nombre] = ?
-      ,[categoria] = ?
-      ,[precio] = ?
-      ,[descripcion] = ?
- WHERE [productoId] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dbo.DIMPRODUCTO
+SET nombre = ?, 
+    categoria = ?, 
+    precio = ?, 
+    descripcion = ?
+WHERE productoId = ?
+</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -62,60 +63,60 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Connections[OleDbConnection]"
-                  connectionManagerID="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
-                  connectionManagerRefId="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  refId="Package\DIM PRODUCTO\ACTUALIZAR.Connections[OleDbConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]"
+                  refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input]"
                   errorOrTruncationOperation="Command Execution"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Command Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[nombre]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[productoId_DIM]"
+                      cachedDataType="i4"
+                      cachedName="productoId_DIM"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[productoId_DIM]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[nombre]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="nombre"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[nombre]" />
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[nombre]" />
                     <inputColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[descripcion]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="descripcion"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[producto_id]"
-                      cachedDataType="i4"
-                      cachedName="producto_id"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[producto_id]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[categoria]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[categoria]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="categoria"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[categoria]" />
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[categoria]" />
                     <inputColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[precio]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[precio]"
                       cachedDataType="numeric"
                       cachedName="precio"
                       cachedPrecision="10"
                       cachedScale="2"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\DIM PRODUCTO\CONVERTIR PRECIO A DECIMAL.Outputs[Data Conversion Output].Columns[precio]" />
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[precio]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].Columns[descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="descripcion"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[descripcion]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       dataType="wstr"
                       length="255"
                       name="Param_0">
@@ -127,7 +128,7 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
                       dataType="wstr"
                       length="255"
                       name="Param_1">
@@ -139,7 +140,7 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
                       dataType="numeric"
                       name="Param_2"
                       precision="10"
@@ -152,7 +153,7 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
                       dataType="wstr"
                       length="255"
                       name="Param_3">
@@ -164,7 +165,7 @@
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
                       dataType="i4"
                       name="Param_4">
                       <properties>
@@ -179,29 +180,29 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Outputs[OLE DB Command Output]"
+                  refId="Package\DIM PRODUCTO\ACTUALIZAR.Outputs[OLE DB Command Output]"
                   exclusionGroup="1"
                   name="OLE DB Command Output"
-                  synchronousInputId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]">
+                  synchronousInputId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output]"
+                  refId="Package\DIM PRODUCTO\ACTUALIZAR.Outputs[OLE DB Command Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Command Error Output"
-                  synchronousInputId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]">
+                  synchronousInputId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DIM PRODUCTO\ACTUALIZAR.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      refId="Package\DIM PRODUCTO\ACTUALIZAR.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DIM PRODUCTO\ACTUALIZAR.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -210,218 +211,176 @@
               </outputs>
             </component>
             <component
-              refId="Package\DIM PRODUCTO\COMPARA DATOS"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="COMPARA DATOS"
-              usesDispositions="true"
-              version="6">
+              refId="Package\DIM PRODUCTO\COMBINAR"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="COMBINAR"
+              version="1">
               <properties>
                 <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DIMPRODUCTO]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DIMPRODUCTO]) [refTable]
-where [refTable].[productoId] = ?</property>
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="productoId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="categoria" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="precio" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="descripcion" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[producto_id]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
                 <property
                   dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
               </properties>
-              <connections>
-                <connection
-                  refId="Package\DIM PRODUCTO\COMPARA DATOS.Connections[OleDbConnection]"
-                  connectionManagerID="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
-                  connectionManagerRefId="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
               <inputs>
                 <input
-                  refId="Package\DIM PRODUCTO\COMPARA DATOS.Inputs[Lookup Input]"
-                  name="Lookup Input">
+                  refId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DIM PRODUCTO\COMPARA DATOS.Inputs[Lookup Input].Columns[producto_id]"
+                      refId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[producto_id]"
                       cachedDataType="i4"
                       cachedName="producto_id"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[producto_id]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">productoId</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[producto_id]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[CONVERTIR PRECIO A DECIMAL.precio]"
+                      cachedDataType="numeric"
+                      cachedName="CONVERTIR PRECIO A DECIMAL.precio"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[CONVERTIR PRECIO A DECIMAL.precio]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="descripcion"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[descripcion]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[categoria]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="categoria"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[categoria]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[nombre]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Right Input].Columns[productoId]"
+                      cachedDataType="i4"
+                      cachedName="productoId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR DIM.Outputs[Sort Output].Columns[productoId]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\DIM PRODUCTO\COMPARA DATOS.Inputs[Lookup Input]">
+                  refId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[categoria]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Copy Column"
-                      length="255"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[categoria]"
-                      name="categoria"
-                      truncationRowDisposition="FailComponent">
+                      refId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[producto_id]"
+                      dataType="i4"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[producto_id]"
+                      name="producto_id"
+                      sortKeyPosition="1">
                       <properties>
                         <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">categoria</property>
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[producto_id]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[nombre]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Copy Column"
-                      length="255"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[nombre]"
-                      name="nombre"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">nombre</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[precio]"
+                      refId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[precio]"
                       dataType="numeric"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[precio]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[precio]"
                       name="precio"
                       precision="10"
-                      scale="2"
-                      truncationRowDisposition="FailComponent">
+                      scale="2">
                       <properties>
                         <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">precio</property>
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[CONVERTIR PRECIO A DECIMAL.precio]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[descripcion]"
+                      refId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[descripcion]"
                       dataType="wstr"
-                      errorOrTruncationOperation="Copy Column"
                       length="255"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[descripcion]"
-                      name="descripcion"
-                      truncationRowDisposition="FailComponent">
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[descripcion]"
+                      name="descripcion">
                       <properties>
                         <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">descripcion</property>
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[descripcion]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[productoId]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[productoId]"
-                      name="productoId"
-                      truncationRowDisposition="FailComponent">
+                      refId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[categoria]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[categoria]"
+                      name="categoria">
                       <properties>
                         <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">productoId</property>
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[categoria]}</property>
                       </properties>
                     </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\DIM PRODUCTO\COMPARA DATOS.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\DIM PRODUCTO\COMPARA DATOS.Inputs[Lookup Input]">
-                  <outputColumns>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
+                      refId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[nombre]"
+                      name="nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[productoId_DIM]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[productoId_DIM]"
+                      name="productoId_DIM">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Right Input].Columns[productoId]}</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -447,7 +406,7 @@ where [refTable].[productoId] = ?</property>
                       cachedName="descripcion"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[descripcion]"
                       truncationRowDisposition="FailComponent"
                       usageType="readWrite">
                       <properties>
@@ -455,7 +414,7 @@ where [refTable].[productoId] = ?</property>
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[ISNULL](#{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]}) ? "Sin descripción disponible" : #{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]}</property>
+                          name="Expression">[ISNULL](#{Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[descripcion]}) ? "Sin descripción disponible" : #{Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[descripcion]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -518,7 +477,7 @@ where [refTable].[productoId] = ?</property>
                       refId="Package\DIM PRODUCTO\CONVERTIR PRECIO A DECIMAL.Inputs[Data Conversion Input].Columns[precio]"
                       cachedDataType="i4"
                       cachedName="precio"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[precio]" />
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[precio]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -545,7 +504,7 @@ where [refTable].[productoId] = ?</property>
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[precio]}</property>
+                          name="SourceInputColumnLineageID">#{Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[precio]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -580,97 +539,49 @@ where [refTable].[productoId] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DIM PRODUCTO\DIVIDIR DATOS"
+              refId="Package\DIM PRODUCTO\DIVIDIR"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
-              name="DIVIDIR DATOS"
+              name="DIVIDIR"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input]"
+                  refId="Package\DIM PRODUCTO\DIVIDIR.Inputs[Conditional Split Input]"
                   description="Input to the Conditional Split Transformation"
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[nombre]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="nombre"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[nombre]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[precio]"
+                      refId="Package\DIM PRODUCTO\DIVIDIR.Inputs[Conditional Split Input].Columns[productoId_DIM]"
                       cachedDataType="i4"
-                      cachedName="precio"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[precio]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[categoria]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="categoria"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[categoria]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[descripcion]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="descripcion"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[producto_id]"
-                      cachedDataType="i4"
-                      cachedName="producto_id"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[producto_id]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[precio1]"
-                      cachedDataType="numeric"
-                      cachedName="precio"
-                      cachedPrecision="10"
-                      cachedScale="2"
-                      lineageId="Package\DIM PRODUCTO\CONVERTIR PRECIO A DECIMAL.Outputs[Data Conversion Output].Columns[precio]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[categoria1]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="categoria"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[categoria]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[nombre1]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="nombre"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[nombre]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input].Columns[descripcion1]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="descripcion"
-                      lineageId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[descripcion]" />
+                      cachedName="productoId_DIM"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[productoId_DIM]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[INSERT]"
+                  refId="Package\DIM PRODUCTO\DIVIDIR.Outputs[NUEVO]"
                   description="Output 1 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
-                  name="INSERT"
-                  synchronousInputId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input]"
+                  name="NUEVO"
+                  synchronousInputId="Package\DIM PRODUCTO\DIVIDIR.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[ISNULL](#{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[producto_id]})</property>
+                      name="Expression">[ISNULL](#{Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[productoId_DIM]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">ISNULL(producto_id)</property>
+                      name="FriendlyExpression">ISNULL(productoId_DIM)</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -679,39 +590,11 @@ where [refTable].[productoId] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[UPDATE]"
-                  description="Output 2 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="UPDATE"
-                  synchronousInputId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[nombre]} != #{Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[nombre]} || #{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]} != #{Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[descripcion]} || #{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[categoria]} != #{Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output].Columns[categoria]} || #{Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[precio]} != #{Package\DIM PRODUCTO\CONVERTIR PRECIO A DECIMAL.Outputs[Data Conversion Output].Columns[precio]}</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">[ORIGEN PRODUCTO].nombre != [COMPARA DATOS].nombre || [ORIGEN PRODUCTO].descripcion != [COMPARA DATOS].descripcion || [ORIGEN PRODUCTO].categoria != [COMPARA DATOS].categoria || [ORIGEN PRODUCTO].precio != [CONVERTIR PRECIO A DECIMAL].precio</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">1</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[SIN CAMBIOS]"
+                  refId="Package\DIM PRODUCTO\DIVIDIR.Outputs[ELIMINAR]"
                   description="Default Output of the Conditional Split Transformation"
                   exclusionGroup="1"
-                  name="SIN CAMBIOS"
-                  synchronousInputId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input]">
+                  name="ELIMINAR"
+                  synchronousInputId="Package\DIM PRODUCTO\DIVIDIR.Inputs[Conditional Split Input]">
                   <properties>
                     <property
                       dataType="System.Boolean"
@@ -720,23 +603,23 @@ where [refTable].[productoId] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[Conditional Split Error Output]"
+                  refId="Package\DIM PRODUCTO\DIVIDIR.Outputs[Conditional Split Error Output]"
                   description="Error Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Conditional Split Error Output"
-                  synchronousInputId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input]">
+                  synchronousInputId="Package\DIM PRODUCTO\DIVIDIR.Inputs[Conditional Split Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      refId="Package\DIM PRODUCTO\DIVIDIR.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DIM PRODUCTO\DIVIDIR.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      refId="Package\DIM PRODUCTO\DIVIDIR.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DIM PRODUCTO\DIVIDIR.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -745,108 +628,11 @@ where [refTable].[productoId] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DIM PRODUCTO\ELIMINAR DESTINO"
-              componentClassID="Microsoft.OLEDBCommand"
-              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="ELIMINAR DESTINO"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DELETE FROM [dbo].[DIMPRODUCTO]
- WHERE [productoId] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Connections[OleDbConnection]"
-                  connectionManagerID="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
-                  connectionManagerRefId="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Inputs[OLE DB Command Input]"
-                  errorOrTruncationOperation="Command Execution"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Command Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Inputs[OLE DB Command Input].Columns[nombre]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="nombre"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[nombre]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="i4"
-                      name="Param_0">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Outputs[OLE DB Command Output]"
-                  exclusionGroup="1"
-                  name="OLE DB Command Output"
-                  synchronousInputId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Inputs[OLE DB Command Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Command Error Output"
-                  synchronousInputId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Inputs[OLE DB Command Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DIM PRODUCTO\INSERTAR DESTINO"
+              refId="Package\DIM PRODUCTO\INSERTAR"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="INSERTAR DESTINO"
+              name="INSERTAR"
               usesDispositions="true"
               version="4">
               <properties>
@@ -866,7 +652,7 @@ where [refTable].[productoId] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT dbo.DIMPRODUCTO.*
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT nombre, categoria, precio, descripcion, productoId
 FROM   dbo.DIMPRODUCTO</property>
                 <property
                   dataType="System.Int32"
@@ -900,90 +686,105 @@ FROM   dbo.DIMPRODUCTO</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Connections[OleDbConnection]"
-                  connectionManagerID="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
-                  connectionManagerRefId="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  refId="Package\DIM PRODUCTO\INSERTAR.Connections[OleDbConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input]"
+                  refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[nombre]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="nombre"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[nombre]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[nombre]" />
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].Columns[precio]"
+                      cachedDataType="numeric"
+                      cachedName="precio"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[precio]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[precio]" />
                     <inputColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[categoria]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="categoria"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[categoria]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[categoria]" />
-                    <inputColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[descripcion]"
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].Columns[descripcion]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="descripcion"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[descripcion]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]" />
+                      externalMetadataColumnId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[descripcion]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[descripcion]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].Columns[categoria]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="categoria"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[categoria]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[categoria]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[nombre]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].Columns[producto_id]"
+                      cachedDataType="i4"
+                      cachedName="producto_id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[productoId]"
+                      lineageId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output].Columns[producto_id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[productoId]"
-                      dataType="i4"
-                      name="productoId" />
-                    <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[nombre]"
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[nombre]"
                       dataType="wstr"
                       length="255"
                       name="nombre" />
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[categoria]"
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[categoria]"
                       dataType="wstr"
                       length="255"
                       name="categoria" />
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[precio]"
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[precio]"
                       dataType="numeric"
                       name="precio"
                       precision="10"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[descripcion]"
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[descripcion]"
                       dataType="wstr"
                       length="255"
                       name="descripcion" />
+                    <externalMetadataColumn
+                      refId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input].ExternalColumns[productoId]"
+                      dataType="i4"
+                      name="productoId" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DIM PRODUCTO\INSERTAR.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DIM PRODUCTO\INSERTAR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DIM PRODUCTO\INSERTAR.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DIM PRODUCTO\INSERTAR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DIM PRODUCTO\INSERTAR.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -992,11 +793,302 @@ FROM   dbo.DIMPRODUCTO</property>
               </outputs>
             </component>
             <component
-              refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO"
+              refId="Package\DIM PRODUCTO\ORDENAR DIM"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR DIM"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DIM PRODUCTO\ORDENAR DIM.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR DIM.Inputs[Sort Input].Columns[productoId]"
+                      cachedDataType="i4"
+                      cachedName="productoId"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Output].Columns[productoId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM PRODUCTO\ORDENAR DIM.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR DIM.Outputs[Sort Output].Columns[productoId]"
+                      dataType="i4"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR DIM.Outputs[Sort Output].Columns[productoId]"
+                      name="productoId"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Output].Columns[productoId]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM PRODUCTO\ORDENAR ORIGEN"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="ORDENAR ORIGEN"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Inputs[Sort Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Inputs[Sort Input].Columns[precio]"
+                      cachedDataType="i4"
+                      cachedName="precio"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[precio]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Inputs[Sort Input].Columns[categoria]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="categoria"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[categoria]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Inputs[Sort Input].Columns[descripcion]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="descripcion"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[descripcion]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Inputs[Sort Input].Columns[producto_id]"
+                      cachedDataType="i4"
+                      cachedName="producto_id"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[producto_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Inputs[Sort Input].Columns[precio1]"
+                      cachedDataType="numeric"
+                      cachedName="precio"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\DIM PRODUCTO\CONVERTIR PRECIO A DECIMAL.Outputs[Data Conversion Output].Columns[precio]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[nombre]"
+                      name="nombre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[ORIGEN.precio]"
+                      dataType="i4"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[ORIGEN.precio]"
+                      name="ORIGEN.precio">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[precio]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[categoria]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[categoria]"
+                      name="categoria">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[categoria]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[descripcion]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[descripcion]"
+                      name="descripcion">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[descripcion]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[producto_id]"
+                      dataType="i4"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[producto_id]"
+                      name="producto_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[producto_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[CONVERTIR PRECIO A DECIMAL.precio]"
+                      dataType="numeric"
+                      lineageId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output].Columns[CONVERTIR PRECIO A DECIMAL.precio]"
+                      name="CONVERTIR PRECIO A DECIMAL.precio"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\DIM PRODUCTO\CONVERTIR PRECIO A DECIMAL.Outputs[Data Conversion Output].Columns[precio]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM PRODUCTO\ORIGEN"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="ORIGEN PRODUCTO"
+              name="ORIGEN"
               usesDispositions="true"
               version="7">
               <properties>
@@ -1043,136 +1135,247 @@ WHERE dbo.productos.categoria_id = dbo.categorias.categoria_id</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Connections[OleDbConnection]"
-                  connectionManagerID="{CAB13400-DFE4-4331-9F06-FAE7625EE6B6}:invalid"
-                  connectionManagerRefId="{CAB13400-DFE4-4331-9F06-FAE7625EE6B6}:invalid"
+                  refId="Package\DIM PRODUCTO\ORIGEN.Connections[OleDbConnection]"
+                  connectionManagerID="{F76B0CC1-2A8C-4AB5-B7B0-9F22CD63A907}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Albarran]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output]"
+                  refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[nombre]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
                       length="255"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[nombre]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]"
                       name="nombre"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[precio]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[precio]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[precio]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[precio]"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[precio]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[precio]"
                       name="precio"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[categoria]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[categoria]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[categoria]"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[categoria]"
                       length="255"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[categoria]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[categoria]"
                       name="categoria"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[descripcion]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[descripcion]"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[descripcion]"
                       length="255"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[descripcion]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[descripcion]"
                       name="descripcion"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[producto_id]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[producto_id]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[producto_id]"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].Columns[producto_id]"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[producto_id]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].Columns[producto_id]"
                       name="producto_id"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
                       dataType="wstr"
                       length="255"
                       name="nombre" />
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[precio]"
-                      dataType="i4"
-                      name="precio" />
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[precio]"
+                      dataType="numeric"
+                      name="precio"
+                      precision="10"
+                      scale="2" />
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[categoria]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[categoria]"
                       dataType="wstr"
                       length="255"
                       name="categoria" />
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[descripcion]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[descripcion]"
                       dataType="wstr"
                       length="255"
                       name="descripcion" />
                     <externalMetadataColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output].ExternalColumns[producto_id]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[producto_id]"
                       dataType="i4"
                       name="producto_id" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[nombre]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[nombre]"
                       name="nombre" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[precio]"
-                      dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[precio]"
-                      name="precio" />
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[precio]"
+                      dataType="numeric"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[precio]"
+                      name="precio"
+                      precision="10"
+                      scale="2" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[categoria]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[categoria]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[categoria]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[categoria]"
                       name="categoria" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[descripcion]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[descripcion]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[descripcion]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[descripcion]"
                       name="descripcion" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[producto_id]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[producto_id]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[producto_id]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[producto_id]"
                       name="producto_id" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM PRODUCTO\ORIGEN DIM"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ORIGEN DIM"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT productoId
+FROM   dbo.DIMPRODUCTO</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM PRODUCTO\ORIGEN DIM.Connections[OleDbConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Output].Columns[productoId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Output].ExternalColumns[productoId]"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Output].Columns[productoId]"
+                      name="productoId"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Output].ExternalColumns[productoId]"
+                      dataType="i4"
+                      name="productoId" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Error Output].Columns[productoId]"
+                      dataType="i4"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Error Output].Columns[productoId]"
+                      name="productoId" />
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1184,7 +1387,7 @@ WHERE dbo.productos.categoria_id = dbo.categorias.categoria_id</property>
           <paths>
             <path
               refId="Package\DIM PRODUCTO.Paths[Data Conversion Output]"
-              endId="Package\DIM PRODUCTO\COMPARA DATOS.Inputs[Lookup Input]"
+              endId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Inputs[Sort Input]"
               name="Data Conversion Output"
               startId="Package\DIM PRODUCTO\CONVERTIR PRECIO A DECIMAL.Outputs[Data Conversion Output]" />
             <path
@@ -1193,30 +1396,40 @@ WHERE dbo.productos.categoria_id = dbo.categorias.categoria_id</property>
               name="Derived Column Output"
               startId="Package\DIM PRODUCTO\CONFIGURAR NULOS.Outputs[Derived Column Output]" />
             <path
-              refId="Package\DIM PRODUCTO.Paths[INSERT]"
-              endId="Package\DIM PRODUCTO\INSERTAR DESTINO.Inputs[OLE DB Destination Input]"
-              name="INSERT"
-              startId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[INSERT]" />
+              refId="Package\DIM PRODUCTO.Paths[ELIMINAR]"
+              endId="Package\DIM PRODUCTO\ACTUALIZAR.Inputs[OLE DB Command Input]"
+              name="ELIMINAR"
+              startId="Package\DIM PRODUCTO\DIVIDIR.Outputs[ELIMINAR]" />
             <path
-              refId="Package\DIM PRODUCTO.Paths[Lookup Match Output]"
-              endId="Package\DIM PRODUCTO\DIVIDIR DATOS.Inputs[Conditional Split Input]"
-              name="Lookup Match Output"
-              startId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup Match Output]" />
+              refId="Package\DIM PRODUCTO.Paths[Merge Join Output]"
+              endId="Package\DIM PRODUCTO\DIVIDIR.Inputs[Conditional Split Input]"
+              name="Merge Join Output"
+              startId="Package\DIM PRODUCTO\COMBINAR.Outputs[Merge Join Output]" />
             <path
-              refId="Package\DIM PRODUCTO.Paths[Lookup No Match Output]"
-              endId="Package\DIM PRODUCTO\ELIMINAR DESTINO.Inputs[OLE DB Command Input]"
-              name="Lookup No Match Output"
-              startId="Package\DIM PRODUCTO\COMPARA DATOS.Outputs[Lookup No Match Output]" />
+              refId="Package\DIM PRODUCTO.Paths[NUEVO]"
+              endId="Package\DIM PRODUCTO\INSERTAR.Inputs[OLE DB Destination Input]"
+              name="NUEVO"
+              startId="Package\DIM PRODUCTO\DIVIDIR.Outputs[NUEVO]" />
             <path
               refId="Package\DIM PRODUCTO.Paths[OLE DB Source Output]"
               endId="Package\DIM PRODUCTO\CONFIGURAR NULOS.Inputs[Derived Column Input]"
               name="OLE DB Source Output"
-              startId="Package\DIM PRODUCTO\ORIGEN PRODUCTO.Outputs[OLE DB Source Output]" />
+              startId="Package\DIM PRODUCTO\ORIGEN.Outputs[OLE DB Source Output]" />
             <path
-              refId="Package\DIM PRODUCTO.Paths[UPDATE]"
-              endId="Package\DIM PRODUCTO\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]"
-              name="UPDATE"
-              startId="Package\DIM PRODUCTO\DIVIDIR DATOS.Outputs[UPDATE]" />
+              refId="Package\DIM PRODUCTO.Paths[OLE DB Source Output1]"
+              endId="Package\DIM PRODUCTO\ORDENAR DIM.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\DIM PRODUCTO\ORIGEN DIM.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DIM PRODUCTO.Paths[Sort Output]"
+              endId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\DIM PRODUCTO\ORDENAR ORIGEN.Outputs[Sort Output]" />
+            <path
+              refId="Package\DIM PRODUCTO.Paths[Sort Output1]"
+              endId="Package\DIM PRODUCTO\COMBINAR.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\DIM PRODUCTO\ORDENAR DIM.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1237,7 +1450,7 @@ WHERE dbo.productos.categoria_id = dbo.categorias.categoria_id</property>
         <NodeLayout
           Size="164.571428571429,42.2857142857143"
           Id="Package\DIM PRODUCTO"
-          TopLeft="97.2222204515594,98.090903642872" />
+          TopLeft="5.5,5.49999999999997" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1245,78 +1458,128 @@ WHERE dbo.productos.categoria_id = dbo.categorias.categoria_id</property>
     design-time-name="Package\DIM PRODUCTO">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="185.714285714286,42.2857142857143"
-          Id="Package\DIM PRODUCTO\INSERTAR DESTINO"
-          TopLeft="60,571.428571428571" />
+          Size="145.142857142858,42.2857142857143"
+          Id="Package\DIM PRODUCTO\ORIGEN DIM"
+          TopLeft="27.1049378781244,209.414862951329" />
         <NodeLayout
-          Size="159.428571428572,42.2857142857143"
-          Id="Package\DIM PRODUCTO\DIVIDIR DATOS"
-          TopLeft="73.1428571428571,469.142857142857" />
-        <NodeLayout
-          Size="174.857142857143,42.2857142857143"
-          Id="Package\DIM PRODUCTO\COMPARA DATOS"
-          TopLeft="296.428571428571,366.857142857143" />
+          Size="156.571428571429,42.2857142857143"
+          Id="Package\DIM PRODUCTO\ORDENAR DIM"
+          TopLeft="28.7857142857143,312.357142857143" />
         <NodeLayout
           Size="192.571428571429,42.2857142857143"
           Id="Package\DIM PRODUCTO\CONFIGURAR NULOS"
-          TopLeft="287.571428571429,162.285714285714" />
-        <NodeLayout
-          Size="187.428571428572,42.2857142857143"
-          Id="Package\DIM PRODUCTO\ORIGEN PRODUCTO"
-          TopLeft="290.142857142857,60" />
-        <NodeLayout
-          Size="181.714285714286,42.2857142857143"
-          Id="Package\DIM PRODUCTO\ELIMINAR DESTINO"
-          TopLeft="293,469.142857142857" />
-        <NodeLayout
-          Size="198.285714285715,42.2857142857143"
-          Id="Package\DIM PRODUCTO\ACTUALIZAR DESTINO"
-          TopLeft="306.714285714286,571.428571428571" />
+          TopLeft="239.785714285714,107.785714285714" />
         <NodeLayout
           Size="249.142857142858,42.2857142857143"
           Id="Package\DIM PRODUCTO\CONVERTIR PRECIO A DECIMAL"
-          TopLeft="259.285714285714,264.571428571428" />
+          TopLeft="211.5,210.071428571428" />
+        <NodeLayout
+          Size="137.714285714286,42.2857142857143"
+          Id="Package\DIM PRODUCTO\COMBINAR"
+          TopLeft="249.313051472411,417.269119623255" />
+        <NodeLayout
+          Size="122.285714285715,42.2857142857143"
+          Id="Package\DIM PRODUCTO\ORIGEN"
+          TopLeft="274.928571428571,5.49999999999997" />
+        <NodeLayout
+          Size="179.428571428572,42.2857142857143"
+          Id="Package\DIM PRODUCTO\ORDENAR ORIGEN"
+          TopLeft="246.357142857143,312.357142857143" />
+        <NodeLayout
+          Size="119.428571428572,42.2857142857143"
+          Id="Package\DIM PRODUCTO\DIVIDIR"
+          TopLeft="258.455908615268,519.554833908969" />
+        <NodeLayout
+          Size="146.857142857143,42.2857142857143"
+          Id="Package\DIM PRODUCTO\ACTUALIZAR"
+          TopLeft="263.260141082232,621.183982574584" />
+        <NodeLayout
+          Size="134.285714285715,42.2857142857143"
+          Id="Package\DIM PRODUCTO\INSERTAR"
+          TopLeft="50.027337186697,619.870851334385" />
         <EdgeLayout
-          Id="Package\DIM PRODUCTO.Paths[UPDATE]"
-          TopLeft="178.095238095238,511.428571428571">
+          Id="Package\DIM PRODUCTO.Paths[Sort Output1]"
+          TopLeft="107.071428571429,354.642857142857">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="227.761904761905,60"
+              EndConnector="189.479718139078,62.6262624803982"
               Start="0,0"
-              End="227.761904761905,52.5">
+              End="189.479718139078,55.1262624803982">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.3577004968063" />
+                    End="0,33.144206540876" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.3577004968063"
-                    Point2="0,24.3577004968063"
-                    Point3="4,24.3577004968063" />
+                    Point1="0,33.144206540876"
+                    Point2="0,37.144206540876"
+                    Point3="4,37.144206540876" />
                   <mssgle:LineSegment
-                    End="223.761904761905,24.3577004968063" />
+                    End="185.479718139078,37.144206540876" />
                   <mssgle:CubicBezierSegment
-                    Point1="223.761904761905,24.3577004968063"
-                    Point2="227.761904761905,24.3577004968063"
-                    Point3="227.761904761905,28.3577004968063" />
+                    Point1="185.479718139078,37.144206540876"
+                    Point2="189.479718139078,37.144206540876"
+                    Point3="189.479718139078,41.144206540876" />
                   <mssgle:LineSegment
-                    End="227.761904761905,52.5" />
+                    End="189.479718139078,55.1262624803982" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="95.2190578497024,29.3577004968063,37.3237890625,9.421875"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM PRODUCTO.Paths[Sort Output]"
+          TopLeft="337.930335260015,354.642857142857">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.6262624803982"
+              Start="0,0"
+              End="0,55.1262624803982">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.1262624803982" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM PRODUCTO.Paths[OLE DB Source Output1]"
+          TopLeft="103.373897510491,251.700577237043">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.6565656200995"
+              Start="0,0"
+              End="0,53.1565656200995">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.1565656200995" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DIM PRODUCTO.Paths[OLE DB Source Output]"
-          TopLeft="383.857142857143,102.285714285714">
+          TopLeft="336.071428571429,47.7857142857142">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1337,116 +1600,64 @@ WHERE dbo.productos.categoria_id = dbo.categorias.categoria_id</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DIM PRODUCTO.Paths[Lookup No Match Output]"
-          TopLeft="411.666666666667,409.142857142857">
+          Id="Package\DIM PRODUCTO.Paths[NUEVO]"
+          TopLeft="299.598765758126,561.840548194684">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-27.8095238095237,59.9999999999999"
+              EndConnector="-182.428571428571,58.0303031397011"
               Start="0,0"
-              End="-27.8095238095237,52.4999999999999">
+              End="-182.428571428571,50.5303031397011">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.3264248704663" />
+                    End="0,19.6724182779517" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.3264248704663"
-                    Point2="0,24.3264248704663"
-                    Point3="-4,24.3264248704663" />
+                    Point1="0,19.6724182779517"
+                    Point2="0,23.6724182779517"
+                    Point3="-4,23.6724182779517" />
                   <mssgle:LineSegment
-                    End="-23.8095238095237,24.3264248704663" />
+                    End="-178.428571428571,23.6724182779517" />
                   <mssgle:CubicBezierSegment
-                    Point1="-23.8095238095237,24.3264248704663"
-                    Point2="-27.8095238095237,24.3264248704663"
-                    Point3="-27.8095238095237,28.3264248704663" />
+                    Point1="-178.428571428571,23.6724182779517"
+                    Point2="-182.428571428571,23.6724182779517"
+                    Point3="-182.428571428571,27.6724182779517" />
                   <mssgle:LineSegment
-                    End="-27.8095238095237,52.4999999999999" />
+                    End="-182.428571428571,50.5303031397011" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-69.7111486235118,29.3264248704663,111.6127734375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DIM PRODUCTO.Paths[Lookup Match Output]"
-          TopLeft="356.047619047619,409.142857142857">
+          Id="Package\DIM PRODUCTO.Paths[Merge Join Output]"
+          TopLeft="318.170194329554,459.554833908969">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-203.190476190476,59.9999999999999"
+              EndConnector="0,60.0000000000001"
               Start="0,0"
-              End="-203.190476190476,52.4999999999999">
+              End="0,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.3264248704663" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3264248704663"
-                    Point2="0,24.3264248704663"
-                    Point3="-4,24.3264248704663" />
-                  <mssgle:LineSegment
-                    End="-199.190476190476,24.3264248704663" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-199.190476190476,24.3264248704663"
-                    Point2="-203.190476190476,24.3264248704663"
-                    Point3="-203.190476190476,28.3264248704663" />
-                  <mssgle:LineSegment
-                    End="-203.190476190476,52.4999999999999" />
+                    End="0,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-149.786624813988,29.3264248704663,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DIM PRODUCTO.Paths[INSERT]"
-          TopLeft="127.619047619048,511.428571428571">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="25.2380952380953,60"
-              Start="0,0"
-              End="25.2380952380953,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.3577004968062" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.3577004968062"
-                    Point2="0,24.3577004968062"
-                    Point3="4,24.3577004968062" />
-                  <mssgle:LineSegment
-                    End="21.2380952380953,24.3577004968062" />
-                  <mssgle:CubicBezierSegment
-                    Point1="21.2380952380953,24.3577004968062"
-                    Point2="25.2380952380953,24.3577004968062"
-                    Point3="25.2380952380953,28.3577004968062" />
-                  <mssgle:LineSegment
-                    End="25.2380952380953,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-4.97126488095237,29.3577004968062,35.180625,9.5341796875"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DIM PRODUCTO.Paths[Derived Column Output]"
-          TopLeft="383.857142857143,204.571428571428">
+          TopLeft="336.071428571429,150.071428571428">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1468,7 +1679,7 @@ WHERE dbo.productos.categoria_id = dbo.categorias.categoria_id</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DIM PRODUCTO.Paths[Data Conversion Output]"
-          TopLeft="383.857142857143,306.857142857143">
+          TopLeft="336.071428571429,252.357142857143">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1488,8 +1699,62 @@ WHERE dbo.productos.categoria_id = dbo.categorias.categoria_id</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM PRODUCTO.Paths[ELIMINAR]"
+          TopLeft="336.715167705893,561.840548194684">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.3434343799"
+              Start="0,0"
+              End="0,51.8434343799">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.8434343799" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelinePath
+    design-time-name="Package\DIM PRODUCTO.Paths[NUEVO]">
+    <PathAnnotation>Never</PathAnnotation>
+  </PipelinePath>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM PRODUCTO\ORIGEN DIM">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM PRODUCTO\ORIGEN">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM PRODUCTO\INSERTAR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelinePath
+    design-time-name="Package\DIM PRODUCTO.Paths[ELIMINAR]">
+    <PathAnnotation>Never</PathAnnotation>
+  </PipelinePath>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
