@@ -1,0 +1,1440 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/21/2024 1:19:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BELIAL-PC"
+  DTS:CreatorName="BELIAL-PC\oreln"
+  DTS:DTSID="{1F4DC2B8-FD57-4A87-A071-473DB154D387}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="13322"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{71FC297B-5E3A-45F7-A45E-1C7E7B47E2E8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{816E1977-9C3E-46DB-B425-636E2140DDA7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\ACTUALIZAR DESTINO"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="ACTUALIZAR DESTINO"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dbo.DIMEMPLEADO
+SET nombre = ?, 
+    apPaterno = ?, 
+    apMaterno = ?, 
+    fechaContrato = ?, 
+    sueldoBase = ?, 
+    cargo = ?
+WHERE empleadoId = ?
+  AND (nombre != ? 
+       OR apPaterno != ? 
+       OR apMaterno != ? 
+       OR fechaContrato != ? 
+       OR sueldoBase != ? 
+       OR cargo != ?);
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Connections[OleDbConnection]"
+                  connectionManagerID="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  connectionManagerRefId="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[apMaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="apMaterno"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[apMaterno]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[appaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="appaterno"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[appaterno]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[fecha_contrato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha_contrato"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[fecha_contrato]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[sueldo_base]"
+                      cachedDataType="i4"
+                      cachedName="sueldo_base"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[sueldo_base]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="cargo"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[cargo]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[nombre1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[apPaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="apPaterno"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[apPaterno]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[apmaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="apmaterno"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[apmaterno]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[fechaContrato]"
+                      cachedDataType="dbDate"
+                      cachedName="fechaContrato"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaContrato]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[sueldoBase]"
+                      cachedDataType="numeric"
+                      cachedName="sueldoBase"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sueldoBase]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[cargo1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="cargo"
+                      externalMetadataColumnId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[cargo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="dbDate"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="numeric"
+                      name="Param_4"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="i4"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      dataType="dbDate"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      dataType="numeric"
+                      name="Param_11"
+                      precision="10"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_12">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ELIMINAR DESTINO"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="ELIMINAR DESTINO"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DELETE FROM dbo.DIMEMPLEADO WHERE empleadoId = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\ELIMINAR DESTINO.Connections[OleDbConnection]"
+                  connectionManagerID="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  connectionManagerRefId="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ELIMINAR DESTINO.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ELIMINAR DESTINO.Inputs[OLE DB Command Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      externalMetadataColumnId="Package\Data Flow Task\ELIMINAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ELIMINAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ELIMINAR DESTINO.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Data Flow Task\ELIMINAR DESTINO.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Data Flow Task\ELIMINAR DESTINO.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ELIMINAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ID ES NULO"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="ID ES NULO"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\ID ES NULO.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\ID ES NULO.Inputs[Conditional Split Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ID ES NULO.Outputs[DELETE]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="DELETE"
+                  synchronousInputId="Package\Data Flow Task\ID ES NULO.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ISNULL](#{Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(empleado_id)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\ID ES NULO.Outputs[SALIDA]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="SALIDA"
+                  synchronousInputId="Package\Data Flow Task\ID ES NULO.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\ID ES NULO.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\ID ES NULO.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ID ES NULO.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ID ES NULO.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ID ES NULO.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ID ES NULO.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\INSERTAR DESTINO"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="INSERTAR DESTINO"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT empleadoId, nombre, apPaterno, apMaterno, fechaContrato, sueldoBase, cargo
+FROM   dbo.DIMEMPLEADO</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\INSERTAR DESTINO.Connections[OleDbConnection]"
+                  connectionManagerID="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  connectionManagerRefId="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      externalMetadataColumnId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[nombre]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      externalMetadataColumnId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[empleadoId]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[appaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="appaterno"
+                      externalMetadataColumnId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[apPaterno]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[appaterno]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[apmaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="apmaterno"
+                      externalMetadataColumnId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[apMaterno]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[apmaterno]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[fecha_contrato]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha_contrato"
+                      externalMetadataColumnId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[fechaContrato]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[fecha_contrato]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[sueldo_base]"
+                      cachedDataType="i4"
+                      cachedName="sueldo_base"
+                      externalMetadataColumnId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[sueldoBase]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[sueldo_base]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[cargo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="cargo"
+                      externalMetadataColumnId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[cargo]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[cargo]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[empleadoId]"
+                      dataType="i4"
+                      name="empleadoId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[apPaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="apPaterno" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[apMaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="apMaterno" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[fechaContrato]"
+                      dataType="dbDate"
+                      name="fechaContrato" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[sueldoBase]"
+                      dataType="numeric"
+                      name="sueldoBase"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[cargo]"
+                      dataType="wstr"
+                      length="255"
+                      name="cargo" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\ORIGEN EMPLEADO"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ORIGEN EMPLEADO"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT dbo.empleados.empleado_id, dbo.empleados.nombre, dbo.empleados.appaterno, dbo.empleados.apmaterno,  dbo.empleados.fecha_contrato, dbo.empleados.sueldo_base, dbo.cargos.nombre AS cargo
+FROM   dbo.empleados, dbo.cargos
+WHERE dbo.empleados.cargo_id = dbo.cargos.cargo_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\ORIGEN EMPLEADO.Connections[OleDbConnection]"
+                  connectionManagerID="{CAB13400-DFE4-4331-9F06-FAE7625EE6B6}:invalid"
+                  connectionManagerRefId="{CAB13400-DFE4-4331-9F06-FAE7625EE6B6}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[sueldo_base]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[sueldo_base]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[sueldo_base]"
+                      name="sueldo_base"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[fecha_contrato]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[fecha_contrato]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[fecha_contrato]"
+                      name="fecha_contrato"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[apmaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[apmaterno]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[apmaterno]"
+                      name="apmaterno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[appaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[appaterno]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[appaterno]"
+                      name="appaterno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleado_id]"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]"
+                      name="empleado_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[cargo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[cargo]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[cargo]"
+                      name="cargo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[sueldo_base]"
+                      dataType="i4"
+                      name="sueldo_base" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[fecha_contrato]"
+                      dataType="dbTimeStamp"
+                      name="fecha_contrato" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[apmaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="apmaterno" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[appaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="appaterno" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[empleado_id]"
+                      dataType="i4"
+                      name="empleado_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].ExternalColumns[cargo]"
+                      dataType="wstr"
+                      length="255"
+                      name="cargo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[sueldo_base]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[sueldo_base]"
+                      name="sueldo_base" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[fecha_contrato]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[fecha_contrato]"
+                      name="fecha_contrato" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[apmaterno]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[apmaterno]"
+                      name="apmaterno" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[appaterno]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[appaterno]"
+                      name="appaterno" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[cargo]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[cargo]"
+                      name="cargo" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleado_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[empleado_id]"
+                      name="empleado_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\VERIFICAR DATOS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="VERIFICAR DATOS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT empleadoId, nombre, apMaterno, apPaterno, fechaContrato, sueldoBase, cargo
+FROM   dbo.DIMEMPLEADO</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT empleadoId, nombre, apMaterno, apPaterno, fechaContrato, sueldoBase, cargo
+FROM   dbo.DIMEMPLEADO) [refTable]
+where [refTable].[empleadoId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="empleadoId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombre" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="apMaterno" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="apPaterno" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="fechaContrato" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sueldoBase" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="cargo" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\VERIFICAR DATOS.Connections[OleDbConnection]"
+                  connectionManagerID="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  connectionManagerRefId="{A63B2A6A-6F7D-47C4-9C17-468F1022B488}:invalid"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\VERIFICAR DATOS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Inputs[Lookup Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      lineageId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output].Columns[empleado_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">empleadoId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\VERIFICAR DATOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">nombre</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[apMaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[apMaterno]"
+                      name="apMaterno"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">apMaterno</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[apPaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[apPaterno]"
+                      name="apPaterno"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">apPaterno</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaContrato]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaContrato]"
+                      name="fechaContrato"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">fechaContrato</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sueldoBase]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sueldoBase]"
+                      name="sueldoBase"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sueldoBase</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[cargo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[cargo]"
+                      name="cargo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">cargo</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[empleadoId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[empleadoId]"
+                      name="empleadoId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">empleadoId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\VERIFICAR DATOS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\VERIFICAR DATOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[DELETE]"
+              endId="Package\Data Flow Task\ELIMINAR DESTINO.Inputs[OLE DB Command Input]"
+              name="DELETE"
+              startId="Package\Data Flow Task\ID ES NULO.Outputs[DELETE]" />
+            <path
+              refId="Package\Data Flow Task.Paths[INSERT]"
+              endId="Package\Data Flow Task\INSERTAR DESTINO.Inputs[OLE DB Destination Input]"
+              name="INSERT"
+              startId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\ID ES NULO.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\ORIGEN EMPLEADO.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[SALIDA]"
+              endId="Package\Data Flow Task\VERIFICAR DATOS.Inputs[Lookup Input]"
+              name="SALIDA"
+              startId="Package\Data Flow Task\ID ES NULO.Outputs[SALIDA]" />
+            <path
+              refId="Package\Data Flow Task.Paths[UPDATE]"
+              endId="Package\Data Flow Task\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]"
+              name="UPDATE"
+              startId="Package\Data Flow Task\VERIFICAR DATOS.Outputs[Lookup Match Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="154.857142857143,42.2857142857143"
+          Id="Package\Data Flow Task"
+          TopLeft="88.3333317245599,129.409083721621" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="140.571428571429,42.2857142857143"
+          Id="Package\Data Flow Task\ID ES NULO"
+          TopLeft="253.999991327525,153.999995797872" />
+        <NodeLayout
+          Size="185.714285714286,42.2857142857143"
+          Id="Package\Data Flow Task\INSERTAR DESTINO"
+          TopLeft="60,399.999984800816" />
+        <NodeLayout
+          Size="177.714285714286,42.2857142857143"
+          Id="Package\Data Flow Task\VERIFICAR DATOS"
+          TopLeft="235.333325495323,264.666657517354" />
+        <NodeLayout
+          Size="185.714285714286,42.2857142857143"
+          Id="Package\Data Flow Task\ORIGEN EMPLEADO"
+          TopLeft="238.333325361212,60" />
+        <NodeLayout
+          Size="198.285714285715,42.2857142857143"
+          Id="Package\Data Flow Task\ACTUALIZAR DESTINO"
+          TopLeft="397.333318253359,401.333318074545" />
+        <NodeLayout
+          Size="181.714285714286,42.2857142857143"
+          Id="Package\Data Flow Task\ELIMINAR DESTINO"
+          TopLeft="477.999981313945,153.333329161008" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[UPDATE]"
+          TopLeft="352.47618263818,306.952371803068">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="143.999992758036,94.3809462714765"
+              Start="0,0"
+              End="143.999992758036,86.8809462714765">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.2576684695087" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.2576684695087"
+                    Point2="0,38.2576684695087"
+                    Point3="4,38.2576684695087" />
+                  <mssgle:LineSegment
+                    End="139.999992758036,38.2576684695087" />
+                  <mssgle:CubicBezierSegment
+                    Point1="139.999992758036,38.2576684695087"
+                    Point2="143.999992758036,38.2576684695087"
+                    Point3="143.999992758036,42.2576684695087" />
+                  <mssgle:LineSegment
+                    End="143.999992758036,86.8809462714765" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="53.3381018477681,43.2576684695087,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[SALIDA]"
+          TopLeft="324.238086982852,196.285710083587">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68.3809474337671"
+              Start="0,0"
+              End="0,60.8809474337671">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.8809474337671" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-17.36447265625,25.6733838731335,34.7289453125,9.5341796875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="327.738086915797,102.285714285714">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.7142815121584"
+              Start="0,0"
+              End="0,44.2142815121584">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.2142815121584" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[INSERT]"
+          TopLeft="295.904754066751,306.952371803068">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-143.047611209609,93.0476129977478"
+              Start="0,0"
+              End="-143.047611209609,85.5476129977478">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.7171968556836" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.7171968556836"
+                    Point2="0,37.7171968556836"
+                    Point3="-4,37.7171968556836" />
+                  <mssgle:LineSegment
+                    End="-139.047611209609,37.7171968556836" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-139.047611209609,37.7171968556836"
+                    Point2="-143.047611209609,37.7171968556836"
+                    Point3="-143.047611209609,41.7171968556836" />
+                  <mssgle:LineSegment
+                    End="-143.047611209609,85.5476129977478" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-89.1141181048043,42.7171968556836,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[DELETE]"
+          TopLeft="394.571419898953,174.809519622297">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="83.4285614149915,0"
+              Start="0,0"
+              End="75.9285614149915,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="75.9285614149915,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="20.2813314887457,5,35.3658984375,9.2705078125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

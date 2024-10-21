@@ -5,14 +5,14 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="BELIAL-PC"
   DTS:CreatorName="BELIAL-PC\oreln"
-  DTS:DTSID="{E66C6890-AF6A-43A1-8DFD-78E9BF1A5760}"
+  DTS:DTSID="{68BFCA80-B615-442F-A7A3-EA2506A40DC7}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="13322"
-  DTS:ObjectName="Package"
+  DTS:ObjectName="SUCURSAL"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{9BC66761-9417-4315-A6B3-8CBB9AEBBD34}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{69639CDC-651E-419B-8BDD-9FE73A356DC4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -696,13 +696,21 @@ FROM   comunas INNER JOIN
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="157.142857142858,42.2857142857143"
-          Id="Package\DIM SUCURSAL\Origen Sucursal"
-          TopLeft="228.071428571429,5.49999999999997" />
-        <NodeLayout
           Size="214.857142857143,42.2857142857143"
           Id="Package\DIM SUCURSAL\Slowly Changing Dimension"
           TopLeft="199.214285714286,107.785714285714" />
+        <NodeLayout
+          Size="172,42.2857142857143"
+          Id="Package\DIM SUCURSAL\OLE DB Command"
+          TopLeft="220.642857142857,210.071428571428" />
+        <NodeLayout
+          Size="154.285714285715,42.2857142857143"
+          Id="Package\DIM SUCURSAL\Insertar destino"
+          TopLeft="5.50000000000003,210.071428571428" />
+        <NodeLayout
+          Size="157.142857142858,42.2857142857143"
+          Id="Package\DIM SUCURSAL\Origen Sucursal"
+          TopLeft="228.071428571429,5.49999999999997" />
         <EdgeLayout
           Id="Package\DIM SUCURSAL.Paths[OLE DB Source Output]"
           TopLeft="306.642857142857,47.7857142857142">
@@ -725,10 +733,6 @@ FROM   comunas INNER JOIN
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="154.285714285715,42.2857142857143"
-          Id="Package\DIM SUCURSAL\Insertar destino"
-          TopLeft="5.50000000000003,210.071428571428" />
         <EdgeLayout
           Id="Package\DIM SUCURSAL.Paths[New Output]"
           TopLeft="272.166666666667,150.071428571428">
@@ -765,10 +769,6 @@ FROM   comunas INNER JOIN
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="172,42.2857142857143"
-          Id="Package\DIM SUCURSAL\OLE DB Command"
-          TopLeft="220.642857142857,210.071428571428" />
         <EdgeLayout
           Id="Package\DIM SUCURSAL.Paths[Changing Attribute Updates Output]"
           TopLeft="341.119047619048,150.071428571428">
@@ -808,14 +808,6 @@ FROM   comunas INNER JOIN
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\DIM SUCURSAL\Origen Sucursal">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DIM SUCURSAL\Slowly Changing Dimension">
     <Properties>
@@ -862,6 +854,14 @@ FROM   comunas INNER JOIN
   &lt;DateVariable /&gt;
   &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
 &lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM SUCURSAL\Origen Sucursal">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

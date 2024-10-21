@@ -1,0 +1,1991 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/21/2024 1:18:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BELIAL-PC"
+  DTS:CreatorName="BELIAL-PC\oreln"
+  DTS:DTSID="{CD7D8289-EB1C-44FC-9B5A-6AE30964CFE6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="13322"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{75D53FDD-8C02-4F08-95FC-FE824AF289F2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SJAPCA03LC0411.Albarran 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C15F151C-22DD-43E6-887A-A94945B56D70}"
+      DTS:ObjectName="SJAPCA03LC0411.Albarran 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SJAPCA03LC0411;Initial Catalog=Albarran;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SJAPCA03LC0411.Albarran1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{9D9D185B-542B-4807-AB89-EE245A61BB30}"
+      DTS:ObjectName="SJAPCA03LC0411.Albarran1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SJAPCA03LC0411;Initial Catalog=Albarran;Integrated Security=True;Application Name=SSIS-Package-{9D9D185B-542B-4807-AB89-EE245A61BB30}SJAPCA03LC0411.Albarran1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SJAPCA03LC0411.Dim_Albarran]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{908017FA-415B-40A2-920C-3772AB856F35}"
+      DTS:ObjectName="SJAPCA03LC0411.Dim_Albarran">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SJAPCA03LC0411;Initial Catalog=Dim_Albarran;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{AD269954-CE76-4985-BCCC-B773158B4503}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Combinación de mezcla"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Combinación de mezcla;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Combina dos flujos de datos ordenados en uno solo mediante la combinación FULL, LEFT o INNER. Se recomienda esta transformación cuando se pueden ordenar los flujos de datos en sus orígenes."
+              name="Combinación de mezcla"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el tipo de combinación que se debe realizar."
+                  name="JoinType"
+                  typeConverter="JoinType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número de columnas de la clave de ordenación."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si los valores NULL se tratan como valores iguales."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indica la cantidad máxima solicitada de búferes por entrada antes del bloqueo."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada izquierda de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[tiempo_id]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[tiempo_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[fecha]"
+                      cachedDataType="dbDate"
+                      cachedName="fecha"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[fecha]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[año]"
+                      cachedDataType="i4"
+                      cachedName="año"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[año]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[mes]"
+                      cachedDataType="i4"
+                      cachedName="mes"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[mes]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[día]"
+                      cachedDataType="i4"
+                      cachedName="día"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[día]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[semana]"
+                      cachedDataType="i4"
+                      cachedName="semana"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[semana]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[trimestre]"
+                      cachedDataType="i4"
+                      cachedName="trimestre"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[trimestre]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[nombre_mes]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="nombre_mes"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[nombre_mes]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[nombre_día]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="nombre_día"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[nombre_día]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[es_fin_de_semana]"
+                      cachedDataType="bool"
+                      cachedName="es_fin_de_semana"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[es_fin_de_semana]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+                  hasSideEffects="true"
+                  name="Entrada derecha de combinación de mezcla">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[tiempoId]"
+                      cachedDataType="i4"
+                      cachedName="tiempoId"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[tiempoId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla]"
+                  isSorted="true"
+                  name="Salida de combinación de mezcla">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempoId]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempoId]"
+                      name="tiempoId">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla].Columns[tiempoId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_id]"
+                      name="tiempo_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[tiempo_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fecha]"
+                      name="fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[año]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[año]"
+                      name="año">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[año]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[mes]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[mes]"
+                      name="mes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[día]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[día]"
+                      name="día">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[día]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[semana]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[semana]"
+                      name="semana">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[semana]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[trimestre]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[trimestre]"
+                      name="trimestre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[trimestre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_mes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_mes]"
+                      name="nombre_mes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[nombre_mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_día]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_día]"
+                      name="nombre_día">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[nombre_día]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[es_fin_de_semana]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[es_fin_de_semana]"
+                      name="es_fin_de_semana">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="La columna de entrada asociada a esta columna de salida"
+                          name="InputColumnID">#{Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla].Columns[es_fin_de_semana]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\División condicional"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="División condicional"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\División condicional.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\División condicional.Inputs[Entrada de división condicional].Columns[tiempoId]"
+                      cachedDataType="i4"
+                      cachedName="tiempoId"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempoId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\División condicional.Outputs[Nuevo Registro]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Nuevo Registro"
+                  synchronousInputId="Package\Data Flow Task\División condicional.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">[ISNULL](#{Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempoId]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(tiempoId)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\División condicional.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\Data Flow Task\División condicional.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\División condicional.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\Data Flow Task\División condicional.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\División condicional.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Insertar nuevos productos"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;2"
+              description="Carga datos en una base de datos compatible con ADO.NET que use una vista o tabla de base de datos. Se cargan datos en una tabla nueva o existente. Por ejemplo, se usa un proveedor ADO.NET para ODBC para cargar datos en un destino ODBC."
+              name="Insertar nuevos productos"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de destino."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."tiempo"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifique el número de filas por lote. El valor predeterminado es 0, que utiliza el mismo tamaño que el búfer interno de SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Especifica si se debe usar la interfaz SqlBulkCopy para mejorar el rendimiento de las operaciones de inserción masiva. No todos los proveedores admiten esta interfaz."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Insertar nuevos productos.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SJAPCA03LC0411.Albarran1]"
+                  connectionManagerRefId="Package.ConnectionManagers[SJAPCA03LC0411.Albarran1]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de destino de ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[tiempo_id]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[tiempo_id]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[tiempo_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[fecha]"
+                      cachedDataType="dbDate"
+                      cachedName="fecha"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[fecha]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[año]"
+                      cachedDataType="i4"
+                      cachedName="año"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[año]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[año]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[mes]"
+                      cachedDataType="i4"
+                      cachedName="mes"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[mes]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[mes]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[día]"
+                      cachedDataType="i4"
+                      cachedName="día"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[día]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[día]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[semana]"
+                      cachedDataType="i4"
+                      cachedName="semana"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[semana]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[semana]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[trimestre]"
+                      cachedDataType="i4"
+                      cachedName="trimestre"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[trimestre]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[trimestre]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[nombre_mes]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="nombre_mes"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre_mes]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_mes]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[nombre_día]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="nombre_día"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre_día]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[nombre_día]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].Columns[es_fin_de_semana]"
+                      cachedDataType="bool"
+                      cachedName="es_fin_de_semana"
+                      externalMetadataColumnId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[es_fin_de_semana]"
+                      lineageId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla].Columns[es_fin_de_semana]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[tiempo_id]"
+                      dataType="i4"
+                      name="tiempo_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[fecha]"
+                      dataType="dbTimeStamp"
+                      name="fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[año]"
+                      dataType="i4"
+                      name="año" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[mes]"
+                      dataType="i4"
+                      name="mes" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[día]"
+                      dataType="i4"
+                      name="día" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[trimestre]"
+                      dataType="i4"
+                      name="trimestre" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[semana]"
+                      dataType="i4"
+                      name="semana" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre_mes]"
+                      dataType="wstr"
+                      length="20"
+                      name="nombre_mes" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[nombre_día]"
+                      dataType="wstr"
+                      length="20"
+                      name="nombre_día" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET].ExternalColumns[es_fin_de_semana]"
+                      dataType="bool"
+                      name="es_fin_de_semana" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Insertar nuevos productos.Outputs[Salida de error de destino de ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de destino de ADO NET"
+                  synchronousInputId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Insertar nuevos productos.Outputs[Salida de error de destino de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Insertar nuevos productos.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Insertar nuevos productos.Outputs[Salida de error de destino de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\LEER DIM TIEMPO"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="LEER DIM TIEMPO"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[DIMTIEMPO]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\LEER DIM TIEMPO.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SJAPCA03LC0411.Dim_Albarran]"
+                  connectionManagerRefId="Package.ConnectionManagers[SJAPCA03LC0411.Dim_Albarran]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[tiempoId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[tiempoId]"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[tiempoId]"
+                      name="tiempoId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[fecha]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[fecha]"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[fecha]"
+                      name="fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[anio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[anio]"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[anio]"
+                      name="anio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[mes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[mes]"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[mes]"
+                      name="mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[dia]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[dia]"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[dia]"
+                      name="dia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[dia_semana]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[dia_semana]"
+                      length="10"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[dia_semana]"
+                      name="dia_semana"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_mes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[nombre_mes]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_mes]"
+                      name="nombre_mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[trimestre]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[trimestre]"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[trimestre]"
+                      name="trimestre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[tiempoId]"
+                      dataType="i4"
+                      name="tiempoId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[fecha]"
+                      dataType="dbDate"
+                      name="fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[anio]"
+                      dataType="i4"
+                      name="anio" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[mes]"
+                      dataType="i4"
+                      name="mes" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[dia]"
+                      dataType="i4"
+                      name="dia" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[dia_semana]"
+                      dataType="wstr"
+                      length="10"
+                      name="dia_semana" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[nombre_mes]"
+                      dataType="wstr"
+                      length="20"
+                      name="nombre_mes" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[trimestre]"
+                      dataType="i4"
+                      name="trimestre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[tiempoId]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[tiempoId]"
+                      name="tiempoId" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[fecha]"
+                      name="fecha" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[anio]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[anio]"
+                      name="anio" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[mes]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[mes]"
+                      name="mes" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[dia]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[dia]"
+                      name="dia" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[dia_semana]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[dia_semana]"
+                      name="dia_semana" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[nombre_mes]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[nombre_mes]"
+                      name="nombre_mes" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[trimestre]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[trimestre]"
+                      name="trimestre" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\LEER TIEMPO"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origen de OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;7"
+              description="Origen de OLE DB"
+              name="LEER TIEMPO"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowset">[dbo].[tiempo]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica la variable que contiene el nombre del objeto de base de datos usado para abrir un conjunto de filas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL para ejecutar."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable que contiene el comando SQL para ejecutar."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Fuerza el uso del valor de la propiedad DefaultCodePage al describir datos de caracteres."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el modo utilizado para obtener acceso a la base de datos."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Asignaciones entre los parámetros del comando SQL y las variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\LEER TIEMPO.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SJAPCA03LC0411.Albarran 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[SJAPCA03LC0411.Albarran 1]"
+                  description="La conexión de tiempo de ejecución OLE DB usada para obtener acceso a la base de datos."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB]"
+                  name="Salida de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[tiempo_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[tiempo_id]"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[tiempo_id]"
+                      name="tiempo_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[fecha]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[fecha]"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[fecha]"
+                      name="fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[año]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[año]"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[año]"
+                      name="año"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[mes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[mes]"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[mes]"
+                      name="mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[día]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[día]"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[día]"
+                      name="día"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[trimestre]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[trimestre]"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[trimestre]"
+                      name="trimestre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[semana]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[semana]"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[semana]"
+                      name="semana"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_mes]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[nombre_mes]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_mes]"
+                      name="nombre_mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_día]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[nombre_día]"
+                      length="20"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_día]"
+                      name="nombre_día"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[es_fin_de_semana]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[es_fin_de_semana]"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[es_fin_de_semana]"
+                      name="es_fin_de_semana"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[tiempo_id]"
+                      dataType="i4"
+                      name="tiempo_id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[fecha]"
+                      dataType="dbDate"
+                      name="fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[año]"
+                      dataType="i4"
+                      name="año" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[mes]"
+                      dataType="i4"
+                      name="mes" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[día]"
+                      dataType="i4"
+                      name="día" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[trimestre]"
+                      dataType="i4"
+                      name="trimestre" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[semana]"
+                      dataType="i4"
+                      name="semana" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[nombre_mes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="nombre_mes" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[nombre_día]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="nombre_día" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].ExternalColumns[es_fin_de_semana]"
+                      dataType="bool"
+                      name="es_fin_de_semana" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[tiempo_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[tiempo_id]"
+                      name="tiempo_id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[fecha]"
+                      name="fecha" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[año]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[año]"
+                      name="año" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[mes]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[mes]"
+                      name="mes" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[día]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[día]"
+                      name="día" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[trimestre]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[trimestre]"
+                      name="trimestre" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[semana]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[semana]"
+                      name="semana" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[nombre_mes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[nombre_mes]"
+                      name="nombre_mes" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[nombre_día]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[nombre_día]"
+                      name="nombre_día" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[es_fin_de_semana]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[es_fin_de_semana]"
+                      name="es_fin_de_semana" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de error de origen de OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Ordenar I"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar I"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[tiempo_id]"
+                      cachedDataType="i4"
+                      cachedName="tiempo_id"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[tiempo_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[fecha]"
+                      cachedDataType="dbDate"
+                      cachedName="fecha"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[año]"
+                      cachedDataType="i4"
+                      cachedName="año"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[año]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[mes]"
+                      cachedDataType="i4"
+                      cachedName="mes"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[mes]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[día]"
+                      cachedDataType="i4"
+                      cachedName="día"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[día]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[trimestre]"
+                      cachedDataType="i4"
+                      cachedName="trimestre"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[trimestre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[semana]"
+                      cachedDataType="i4"
+                      cachedName="semana"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[semana]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[nombre_mes]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="nombre_mes"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_mes]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[nombre_día]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="nombre_día"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_día]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación].Columns[es_fin_de_semana]"
+                      cachedDataType="bool"
+                      cachedName="es_fin_de_semana"
+                      lineageId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[es_fin_de_semana]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[tiempo_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[tiempo_id]"
+                      name="tiempo_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[tiempo_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[fecha]"
+                      name="fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[año]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[año]"
+                      name="año">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[año]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[mes]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[mes]"
+                      name="mes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[día]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[día]"
+                      name="día">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[día]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[trimestre]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[trimestre]"
+                      name="trimestre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[trimestre]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[semana]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[semana]"
+                      name="semana">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[semana]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[nombre_mes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[nombre_mes]"
+                      name="nombre_mes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[nombre_día]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[nombre_día]"
+                      name="nombre_día">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_día]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[es_fin_de_semana]"
+                      dataType="bool"
+                      lineageId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación].Columns[es_fin_de_semana]"
+                      name="es_fin_de_semana">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB].Columns[es_fin_de_semana]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Ordenar II"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Ordenar;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;1"
+              description="Ordena los datos de entrada de manera ascendente o descendente cuando no es posible ordenarlos en su origen. Por ejemplo, se ordenan los datos de ventas por 'id. de cliente' antes de que se escriban en un archivo plano y se entreguen a otro departamento. Nota: no se recomienda realizar esta transformación para grandes flujos de datos."
+              name="Ordenar II"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si la transformación Ordenar quita filas con valores de ordenación duplicados."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica el número máximo de subprocesos que se deben usar para la ordenación."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación]"
+                  name="Entrada de ordenación">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación].Columns[tiempoId]"
+                      cachedDataType="i4"
+                      cachedName="tiempoId"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[tiempoId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación].Columns[fecha]"
+                      cachedDataType="dbDate"
+                      cachedName="fecha"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[fecha]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación].Columns[anio]"
+                      cachedDataType="i4"
+                      cachedName="anio"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[anio]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación].Columns[mes]"
+                      cachedDataType="i4"
+                      cachedName="mes"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[mes]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación].Columns[dia]"
+                      cachedDataType="i4"
+                      cachedName="dia"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[dia]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación].Columns[dia_semana]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="dia_semana"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[dia_semana]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación].Columns[nombre_mes]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="nombre_mes"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_mes]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación].Columns[trimestre]"
+                      cachedDataType="i4"
+                      cachedName="trimestre"
+                      lineageId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[trimestre]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica las opciones de comparación para datos de caracteres."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Especifica el criterio de ordenación de la columna."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación]"
+                  isSorted="true"
+                  name="Salida de ordenación">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[tiempoId]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[tiempoId]"
+                      name="tiempoId"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[tiempoId]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[fecha]"
+                      name="fecha">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[fecha]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[anio]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[anio]"
+                      name="anio">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[anio]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[mes]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[mes]"
+                      name="mes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[dia]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[dia]"
+                      name="dia">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[dia]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[dia_semana]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[dia_semana]"
+                      name="dia_semana">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[dia_semana]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[nombre_mes]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[nombre_mes]"
+                      name="nombre_mes">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[nombre_mes]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[trimestre]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación].Columns[trimestre]"
+                      name="trimestre">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica el identificador de linaje de la columna de entrada que está asociada a esta columna de salida."
+                          name="SortColumnId">#{Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB].Columns[trimestre]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Nuevo Registro]"
+              endId="Package\Data Flow Task\Insertar nuevos productos.Inputs[Entrada de destino de ADO NET]"
+              name="Nuevo Registro"
+              startId="Package\Data Flow Task\División condicional.Outputs[Nuevo Registro]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Salida de combinación de mezcla]"
+              endId="Package\Data Flow Task\División condicional.Inputs[Entrada de división condicional]"
+              name="Salida de combinación de mezcla"
+              startId="Package\Data Flow Task\Combinación de mezcla.Outputs[Salida de combinación de mezcla]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Salida de ordenación]"
+              endId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada derecha de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Data Flow Task\Ordenar II.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Salida de ordenación1]"
+              endId="Package\Data Flow Task\Combinación de mezcla.Inputs[Entrada izquierda de combinación de mezcla]"
+              name="Salida de ordenación"
+              startId="Package\Data Flow Task\Ordenar I.Outputs[Salida de ordenación]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Salida de origen de OLE DB]"
+              endId="Package\Data Flow Task\Ordenar II.Inputs[Entrada de ordenación]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Data Flow Task\LEER DIM TIEMPO.Outputs[Salida de origen de OLE DB]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Salida de origen de OLE DB1]"
+              endId="Package\Data Flow Task\Ordenar I.Inputs[Entrada de ordenación]"
+              name="Salida de origen de OLE DB"
+              startId="Package\Data Flow Task\LEER TIEMPO.Outputs[Salida de origen de OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="154.857142857143,42.2857142857143"
+          Id="Package\Data Flow Task"
+          TopLeft="82.2222207247476,73.2727232031095" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="129.142857142858,42.2857142857143"
+          Id="Package\Data Flow Task\Ordenar II"
+          TopLeft="308,143" />
+        <NodeLayout
+          Size="170.857142857143,42.2857142857143"
+          Id="Package\Data Flow Task\División condicional"
+          TopLeft="176,319" />
+        <NodeLayout
+          Size="144,42.2857142857143"
+          Id="Package\Data Flow Task\LEER TIEMPO"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="202.857142857143,42.2857142857143"
+          Id="Package\Data Flow Task\Insertar nuevos productos"
+          TopLeft="161,414" />
+        <NodeLayout
+          Size="189.714285714286,42.2857142857143"
+          Id="Package\Data Flow Task\Combinación de mezcla"
+          TopLeft="160,237" />
+        <NodeLayout
+          Size="166.857142857143,42.2857142857143"
+          Id="Package\Data Flow Task\LEER DIM TIEMPO"
+          TopLeft="293,61" />
+        <NodeLayout
+          Size="125.142857142858,42.2857142857143"
+          Id="Package\Data Flow Task\Ordenar I"
+          TopLeft="67,141" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Salida de combinación de mezcla]"
+          TopLeft="258.25,279">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Nuevo Registro]"
+          TopLeft="262,361">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.07703125,17.0576171875,68.1540625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Salida de origen de OLE DB]"
+          TopLeft="374.5,103">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Salida de origen de OLE DB1]"
+          TopLeft="130.75,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Salida de ordenación]"
+          TopLeft="372.5,185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-87.1666666666667,52"
+              Start="0,0"
+              End="-87.1666666666667,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.9394572025052" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.9394572025052"
+                    Point2="0,30.9394572025052"
+                    Point3="-4,30.9394572025052" />
+                  <mssgle:LineSegment
+                    End="-83.1666666666667,30.9394572025052" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-83.1666666666667,30.9394572025052"
+                    Point2="-87.1666666666667,30.9394572025052"
+                    Point3="-87.1666666666667,34.9394572025052" />
+                  <mssgle:LineSegment
+                    End="-87.1666666666667,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Salida de ordenación1]"
+          TopLeft="129.5,183">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="125.5,54"
+              Start="0,0"
+              End="125.5,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="4,27" />
+                  <mssgle:LineSegment
+                    End="121.5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="121.5,27"
+                    Point2="125.5,27"
+                    Point3="125.5,31" />
+                  <mssgle:LineSegment
+                    End="125.5,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
