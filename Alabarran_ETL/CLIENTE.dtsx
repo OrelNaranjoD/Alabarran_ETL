@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/21/2024 1:35:38 PM"
@@ -11,9 +11,1340 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionGUID="{227287BA-3253-4D84-88C1-AE30D89626C7}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{391A6EC7-0822-4954-9AB4-689E9D6AAF43}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
-  <DTS:Executables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DIM CLIENTE"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{e70679b7-0ccf-449c-a610-d879ca360a66}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM CLIENTE"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="ACTUALIZAR DESTINO"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dbo.DIMCLIENTE
+SET nombreCompleto = ?, 
+    fechaNacimiento = ?, 
+    sexo = ?, 
+    estadoCivil = ?
+WHERE clienteId = ?
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Connections[OleDbConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[nombre_completo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_completo"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[fecha_nacimiento]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha_nacimiento"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[fecha_nacimiento]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="sexo"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[sexo]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[estado_civil]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="estado_civil"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[estado_civil]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].Columns[clienteIdLookup]"
+                      cachedDataType="i4"
+                      cachedName="clienteIdLookup"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[clienteIdLookup]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="dbDate"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM CLIENTE\DIVIDIR"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="División condicional;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;0"
+              description="Enruta filas de datos a diferentes salidas según el contenido de los datos. Se usan condiciones (expresiones de SSIS) para especificar las filas que se van a enrutar. Por ejemplo, se usa para separar los registros que deben limpiarse de los registros listos para ser cargados o para enrutar solamente un subconjunto de registros."
+              name="DIVIDIR"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional]"
+                  description="Entrada en la transformación División condicional"
+                  name="Entrada de división condicional">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[nombre_completo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_completo"
+                      lineageId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="sexo"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[sexo]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[fecha_nacimiento]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha_nacimiento"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[fecha_nacimiento]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[estado_civil]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="estado_civil"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[estado_civil]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[clienteIdLookup]"
+                      cachedDataType="i4"
+                      cachedName="clienteIdLookup"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[clienteIdLookup]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[nombreCompletoLookup]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombreCompletoLookup"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombreCompletoLookup]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[sexoLookup]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="sexoLookup"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sexoLookup]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[fechaNacimientoLookup]"
+                      cachedDataType="dbDate"
+                      cachedName="fechaNacimientoLookup"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaNacimientoLookup]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional].Columns[estadoCivilLookup]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="estadoCivilLookup"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[estadoCivilLookup]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM CLIENTE\DIVIDIR.Outputs[INPUT]"
+                  description="Salida 1 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="INPUT"
+                  synchronousInputId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">[ISNULL](#{Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[clienteIdLookup]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(clienteIdLookup)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM CLIENTE\DIVIDIR.Outputs[UPDATE]"
+                  description="Salida 2 de la transformación División condicional"
+                  errorOrTruncationOperation="Cálculo"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="UPDATE"
+                  synchronousInputId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la expresión. Esta versión de expresión usa identificadores de linaje en lugar de nombres de columna."
+                      name="Expression">#{Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]} != #{Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombreCompletoLookup]} || #{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[fecha_nacimiento]} != #{Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaNacimientoLookup]} || #{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[sexo]} != #{Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sexoLookup]} || #{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[estado_civil]} != #{Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[estadoCivilLookup]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Especifica la versión descriptiva de la expresión. Esta versión de expresión usa nombres de columna."
+                      expressionType="Notify"
+                      name="FriendlyExpression">nombre_completo != nombreCompletoLookup || fecha_nacimiento != fechaNacimientoLookup || sexo != sexoLookup || estado_civil != estadoCivilLookup</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica la posición de la condición en la lista de condiciones que evalúa la transformación. El orden de evaluación es del menor al mayor valor."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM CLIENTE\DIVIDIR.Outputs[Salida predeterminada de división condicional]"
+                  description="Salida predeterminada de la transformación División condicional"
+                  exclusionGroup="1"
+                  name="Salida predeterminada de división condicional"
+                  synchronousInputId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM CLIENTE\DIVIDIR.Outputs[Salida de error de división condicional]"
+                  description="Salida de error de la transformación División condicional"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Salida de error de división condicional"
+                  synchronousInputId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\DIVIDIR.Outputs[Salida de error de división condicional].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\DIVIDIR.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\DIVIDIR.Outputs[Salida de error de división condicional].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM CLIENTE\INSERTAR DESTINO"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="INSERTAR DESTINO"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT clienteId, nombreCompleto, sexo, fechaNacimiento, estadoCivil
+FROM   dbo.DIMCLIENTE</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM CLIENTE\INSERTAR DESTINO.Connections[OleDbConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[nombre_completo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre_completo"
+                      externalMetadataColumnId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[nombreCompleto]"
+                      lineageId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[cliente_id]"
+                      cachedDataType="i4"
+                      cachedName="cliente_id"
+                      externalMetadataColumnId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[clienteId]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[cliente_id]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[sexo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="sexo"
+                      externalMetadataColumnId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[sexo]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[sexo]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[fecha_nacimiento]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha_nacimiento"
+                      externalMetadataColumnId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[fechaNacimiento]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[fecha_nacimiento]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].Columns[estado_civil]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="estado_civil"
+                      externalMetadataColumnId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[estadoCivil]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[estado_civil]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[nombreCompleto]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombreCompleto" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[clienteId]"
+                      dataType="i4"
+                      name="clienteId" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="sexo" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[fechaNacimiento]"
+                      dataType="dbDate"
+                      name="fechaNacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input].ExternalColumns[estadoCivil]"
+                      dataType="wstr"
+                      length="255"
+                      name="estadoCivil" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM CLIENTE\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\INSERTAR DESTINO.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM CLIENTE\ORIGEN"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ORIGEN"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT cliente_id, nombre, appaterno, apmaterno, sexo, fecha_nacimiento, estado_civil
+FROM   dbo.clientes</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM CLIENTE\ORIGEN.Connections[OleDbConnection]"
+                  connectionManagerID="{F76B0CC1-2A8C-4AB5-B7B0-9F22CD63A907}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Albarran]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[apmaterno]"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]"
+                      name="apmaterno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[appaterno]"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]"
+                      name="appaterno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[cliente_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[cliente_id]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[cliente_id]"
+                      name="cliente_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[sexo]"
+                      length="1"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[sexo]"
+                      name="sexo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[fecha_nacimiento]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[fecha_nacimiento]"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[fecha_nacimiento]"
+                      name="fecha_nacimiento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[estado_civil]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[estado_civil]"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[estado_civil]"
+                      name="estado_civil"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[apmaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="apmaterno" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[appaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="appaterno" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[cliente_id]"
+                      dataType="i4"
+                      name="cliente_id" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="sexo" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[fecha_nacimiento]"
+                      dataType="dbTimeStamp"
+                      name="fecha_nacimiento" />
+                    <externalMetadataColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].ExternalColumns[estado_civil]"
+                      dataType="wstr"
+                      length="255"
+                      name="estado_civil" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[cliente_id]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[cliente_id]"
+                      name="cliente_id" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[apmaterno]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[apmaterno]"
+                      name="apmaterno" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[appaterno]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[appaterno]"
+                      name="appaterno" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[sexo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[sexo]"
+                      name="sexo" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[fecha_nacimiento]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[fecha_nacimiento]"
+                      name="fecha_nacimiento" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[estado_civil]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[estado_civil]"
+                      name="estado_civil" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM CLIENTE\UNION DE NOMBRES"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="UNION DE NOMBRES"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DIM CLIENTE\UNION DE NOMBRES.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\UNION DE NOMBRES.Inputs[Derived Column Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\UNION DE NOMBRES.Inputs[Derived Column Input].Columns[apmaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="apmaterno"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]" />
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\UNION DE NOMBRES.Inputs[Derived Column Input].Columns[appaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="appaterno"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DIM CLIENTE\UNION DE NOMBRES.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Output].Columns[nombre_completo]"
+                      name="nombre_completo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](([ISNULL](#{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]}) ? "" : #{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[nombre]}) + " " + ([ISNULL](#{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]}) ? "" : #{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[appaterno]}) + " " + ([ISNULL](#{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]}) ? "" : #{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[apmaterno]}),1,255)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((ISNULL(nombre) ? "" : nombre) + " " + (ISNULL(appaterno) ? "" : appaterno) + " " + (ISNULL(apmaterno) ? "" : apmaterno),1,255)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DIM CLIENTE\UNION DE NOMBRES.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM CLIENTE\VERIFICAR DATOS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="VERIFICAR DATOS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT clienteId, nombreCompleto, sexo, fechaNacimiento, estadoCivil
+FROM   dbo.DIMCLIENTE</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT clienteId, nombreCompleto, sexo, fechaNacimiento, estadoCivil
+FROM   dbo.DIMCLIENTE) [refTable]
+where [refTable].[clienteId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="clienteId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nombreCompleto" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sexo" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="fechaNacimiento" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="estadoCivil" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[cliente_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM CLIENTE\VERIFICAR DATOS.Connections[OleDbConnection]"
+                  connectionManagerID="{6E4A56A0-063F-4037-84D6-83050D188F1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.Dim_Albarran]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM CLIENTE\VERIFICAR DATOS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM CLIENTE\VERIFICAR DATOS.Inputs[Lookup Input].Columns[cliente_id]"
+                      cachedDataType="i4"
+                      cachedName="cliente_id"
+                      lineageId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output].Columns[cliente_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">clienteId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DIM CLIENTE\VERIFICAR DATOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[clienteIdLookup]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[clienteIdLookup]"
+                      name="clienteIdLookup"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">clienteId</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombreCompletoLookup]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[nombreCompletoLookup]"
+                      name="nombreCompletoLookup"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">nombreCompleto</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sexoLookup]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="1"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[sexoLookup]"
+                      name="sexoLookup"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">sexo</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaNacimientoLookup]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[fechaNacimientoLookup]"
+                      name="fechaNacimientoLookup"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">fechaNacimiento</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[estadoCivilLookup]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="255"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output].Columns[estadoCivilLookup]"
+                      name="estadoCivilLookup"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">estadoCivil</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DIM CLIENTE\VERIFICAR DATOS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DIM CLIENTE\VERIFICAR DATOS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DIM CLIENTE.Paths[Derived Column Output]"
+              endId="Package\DIM CLIENTE\VERIFICAR DATOS.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\DIM CLIENTE\UNION DE NOMBRES.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DIM CLIENTE.Paths[INPUT]"
+              endId="Package\DIM CLIENTE\INSERTAR DESTINO.Inputs[OLE DB Destination Input]"
+              name="INPUT"
+              startId="Package\DIM CLIENTE\DIVIDIR.Outputs[INPUT]" />
+            <path
+              refId="Package\DIM CLIENTE.Paths[Lookup Match Output]"
+              endId="Package\DIM CLIENTE\DIVIDIR.Inputs[Entrada de división condicional]"
+              name="Lookup Match Output"
+              startId="Package\DIM CLIENTE\VERIFICAR DATOS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DIM CLIENTE.Paths[OLE DB Source Output]"
+              endId="Package\DIM CLIENTE\UNION DE NOMBRES.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DIM CLIENTE\ORIGEN.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DIM CLIENTE.Paths[UPDATE]"
+              endId="Package\DIM CLIENTE\ACTUALIZAR DESTINO.Inputs[OLE DB Command Input]"
+              name="UPDATE"
+              startId="Package\DIM CLIENTE\DIVIDIR.Outputs[UPDATE]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="148,42.2857142857143"
+          Id="Package\DIM CLIENTE"
+          TopLeft="5.5,5.49999999999997" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DIM CLIENTE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="190.285714285715,42.2857142857143"
+          Id="Package\DIM CLIENTE\UNION DE NOMBRES"
+          TopLeft="244.785714285714,107.785714285714" />
+        <NodeLayout
+          Size="122.285714285715,42.2857142857143"
+          Id="Package\DIM CLIENTE\ORIGEN"
+          TopLeft="278.785714285714,5.49999999999997" />
+        <NodeLayout
+          Size="178.285714285715,42.2857142857143"
+          Id="Package\DIM CLIENTE\VERIFICAR DATOS"
+          TopLeft="250.785714285714,210.071428571428" />
+        <NodeLayout
+          Size="197.714285714286,42.2857142857143"
+          Id="Package\DIM CLIENTE\ACTUALIZAR DESTINO"
+          TopLeft="241.071428571429,414.642857142857" />
+        <NodeLayout
+          Size="136.571428571429,42.2857142857143"
+          Id="Package\DIM CLIENTE\DIVIDIR"
+          TopLeft="271.642857142857,312.357142857143" />
+        <NodeLayout
+          Size="185.714285714286,42.2857142857143"
+          Id="Package\DIM CLIENTE\INSERTAR DESTINO"
+          TopLeft="5.50000000000007,414.642857142857" />
+        <EdgeLayout
+          Id="Package\DIM CLIENTE.Paths[UPDATE]"
+          TopLeft="361.357142857143,354.642857142857">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.4285714285714,59.9999999999999"
+              Start="0,0"
+              End="-21.4285714285714,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4168734491315" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4168734491315"
+                    Point2="0,24.4168734491315"
+                    Point3="-4,24.4168734491315" />
+                  <mssgle:LineSegment
+                    End="-17.4285714285714,24.4168734491315" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.4285714285714,24.4168734491315"
+                    Point2="-21.4285714285714,24.4168734491315"
+                    Point3="-21.4285714285714,28.4168734491315" />
+                  <mssgle:LineSegment
+                    End="-21.4285714285714,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-29.3761802455357,29.4168734491315,37.3237890625,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM CLIENTE.Paths[OLE DB Source Output]"
+          TopLeft="339.928571428571,47.7857142857142">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM CLIENTE.Paths[Lookup Match Output]"
+          TopLeft="339.928571428571,252.357142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM CLIENTE.Paths[INPUT]"
+          TopLeft="318.5,354.642857142857">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-220.142857142857,59.9999999999999"
+              Start="0,0"
+              End="-220.142857142857,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4168734491315" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.4168734491315"
+                    Point2="0,24.4168734491315"
+                    Point3="-4,24.4168734491315" />
+                  <mssgle:LineSegment
+                    End="-216.142857142857,24.4168734491315" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-216.142857142857,24.4168734491315"
+                    Point2="-220.142857142857,24.4168734491315"
+                    Point3="-220.142857142857,28.4168734491315" />
+                  <mssgle:LineSegment
+                    End="-220.142857142857,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-125.001741071428,29.4168734491315,29.860625,9.421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM CLIENTE.Paths[Derived Column Output]"
+          TopLeft="339.928571428571,150.071428571428">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelinePath
+    design-time-name="Package\DIM CLIENTE.Paths[Lookup Match Output]">
+    <PathAnnotation>Never</PathAnnotation>
+  </PipelinePath>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM CLIENTE\ORIGEN">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM CLIENTE\VERIFICAR DATOS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM CLIENTE\INSERTAR DESTINO">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
